@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "buefy": "^0.9.21",
+    "django": "^1.0.0",
+    "python": "0.0.4"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.3"
+  }
+}
