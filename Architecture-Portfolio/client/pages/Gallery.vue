@@ -1,6 +1,41 @@
 <template>
-     <div class="portfolio background-color-gallery" style="padding: 2.5em;">
+<div id="app">
+   <div id="sort-bar">
+    <select name="sortBy" id="select" v-model="sortBy">
+      <option value="alphabetically">Alphabetically</option>
+      <option value="cookingTime">Cooking Time</option>
+    </select>
+    <button v-on:click="ascending = !ascending" class="sort-button">
+      <i v-if="ascending" class="fa fa-sort-up"></i>
+      <i v-else class="fa fa-sort-down"></i>
+    </button>
+    
+    <input type="text" v-model="searchValue" placeholder="Search Recipe" id="search-input"></input>
+    <i class="fa fa-search"></i>
+  </div>
+
+  <div class="portfolio background-color-gallery" style="padding: 2.5em;">
   <h2 class="title">Latest Projects</h2>
+
+ <div id="recipe-container" style="display: flex; flex-wrap: wrap;">
+    <div class="card space content" v-for="recipe in filteredRecipes" :key="recipe.title">
+      <img :src="recipe.img" class="recipe-image"></img>
+      <div class="content">
+        <h1 class="title">
+          {{ recipe.title }}
+        </h1>
+         <p>
+          {{ recipe.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<!--
   <a href="#" class="card space">
     <div class="content">
       <span class="title">Web Design</span>
@@ -11,7 +46,7 @@
     </div>
   </a>
 
-  <a href="#" class="card space">
+   <a href="#" class="card space">
     <div class="content">
       <span class="title">UX Design</span>
       <span class="category">UX / UI / Research </span>
@@ -589,10 +624,11 @@
     <div class="image">
       <img src="~/assets/image/Gallery/60.jpg" alt="" />
     </div>
-  </a>
+  </a> -->
 
 
 
+</div>
 </div>
 </template>
 <script>
@@ -614,9 +650,86 @@
     }
   }
 </script>
+<script>
+export default {
+ 
+  data() {
+    return {
+      ascending: true,
+      sortBy: 'alphabetically',
+      searchValue: '',
+      maxCookingTime: null,
+    recipes: [
+    {title: 'Pizza', description: 'Yummy pizza for those lazy days', ingredients: ['Dough', 'Tomato Paste', 'Cheese', 'Bell Pepper', 'Onion'], cookingTime: 60, img:'/_nuxt/assets/image/Gallery/1.jpg'},
+    {title: 'Burritos', description: 'Healthy yet very tasty burritos', ingredients: ['Burritos', 'Kidney beans', 'Onion', 'Tomato', 'Bell Pepper'], cookingTime: 30, img: 'https://images.unsplash.com/photo-1566740933430-b5e70b06d2d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'},
+    {title: 'Tomato Soup', description: 'A tasty tomato soup for the cold', ingredients: ['Tomatoes', 'Onion', 'Oregano'], cookingTime: 45, img: 'https://images.unsplash.com/photo-1553881781-4c55163dc5fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'},
+    {title: 'Ice Cream', description: 'Just because... Ice Cream', ingredients: ['Whole milk', 'Cream', 'Eggs', 'Sugar'], cookingTime: 120, img: 'https://images.unsplash.com/photo-1515037028865-0a2a82603f7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1321&q=80'},
+    {title: 'deneme', description: 'Just because... Ice Cream', ingredients: ['Whole milk', 'Cream', 'Eggs', 'Sugar'], cookingTime: 120, img: 'https://images.unsplash.com/photo-1515037028865-0a2a82603f7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1321&q=80'},
+    ]
+    };
+  },
+  computed: {
+  filteredRecipes() {
+    let tempRecipes = this.recipes
+    
+    // Process search input
+    if (this.searchValue != '' && this.searchValue) {
+        tempRecipes = tempRecipes.filter((item) => {
+          return item.title
+            .toUpperCase()
+            .includes(this.searchValue.toUpperCase())
+        })
+      }
+      
+      // Filter out by cooking time
+      if (this.maxCookingTime)
+      tempRecipes = tempRecipes.filter((item) => {
+        return (item.cookingTime <= this.maxCookingTime)
+      })
+           
+    // Sort by alphabetical order
+        tempRecipes = tempRecipes.sort((a, b) => {
+            if (this.sortBy == 'alphabetically') {
+                let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
+          
+              if (fa < fb) {
+                return -1
+              }
+              if (fa > fb) {
+                return 1 
+              }
+              return 0
+              
+              // Sort by cooking time
+            } else if (this.sortBy == 'cookingTime') {
+              return a.cookingTime - b.cookingTime
+        }
+        })
+        
+        // Show sorted array in descending or ascending order
+        if (!this.ascending) {
+        	tempRecipes.reverse()
+        }
+        
+        return tempRecipes
+    }
+  }
+};
+</script>
 <style scoped>
+
+h1 {
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 1em;
+}
+
+
+
 * {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
 }
 body {
@@ -639,6 +752,7 @@ body {
   color: #111;
 }
 .card {
+  /* width was 20% */
   width: 25%;
   overflow: hidden;
   position: relative;
@@ -712,6 +826,7 @@ body {
 
 .card{
     border-radius: 0px!important;
+    
 }
 
 .background-color-gallery {
