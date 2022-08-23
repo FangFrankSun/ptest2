@@ -1,612 +1,30 @@
 <template>
-<div id="app">
-   <div id="sort-bar">
-    <select name="sortBy" id="select" v-model="sortBy">
-      <option value="alphabetically">Alphabetically</option>
-      <option value="cookingTime">Cooking Time</option>
-    </select>
-    <button v-on:click="ascending = !ascending" class="sort-button">
-      <i v-if="ascending" class="fa fa-sort-up"></i>
-      <i v-else class="fa fa-sort-down"></i>
-    </button>
+
+   <div style="
+    text-align: center;
+    margin-top: 1em;
+">
+
+      <meta name="viewport" content="width=device-width">
+  <input type="radio" name="filter" id="all" checked><label for="all">ALL</label>
+  <input type="radio" name="filter" id="animals"><label for="animals">Exterior</label>
+  <input type="radio" name="filter" id="nature"><label for="nature">Interior</label>
+  <input type="radio" name="filter" id="people"><label for="people">Furniture</label>
+  <input type="radio" name="filter" id="tech"><label for="tech">Modern</label>
+  <div class="gallery">
     
-    <input type="text" v-model="searchValue" placeholder="Search Recipe" id="search-input"></input>
-    <i class="fa fa-search"></i>
-  </div>
 
-  <div class="portfolio background-color-gallery" style="padding: 2.5em;">
-  <h2 class="title">Latest Projects</h2>
-
- <div id="recipe-container" style="display: flex; flex-wrap: wrap;">
-    <div class="card space content" v-for="recipe in filteredRecipes" :key="recipe.title">
-      <img :src="recipe.img" class="recipe-image"></img>
-      <div class="content">
-        <h1 class="title">
-          {{ recipe.title }}
-        </h1>
-         <p>
-          {{ recipe.description }}
-        </p>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-<!--
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Web Design</span>
-      <span class="category">Mobile / Design / Rebranding</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/1.jpg" alt="" />
-    </div>
-  </a>
-
-   <a href="#" class="card space">
-    <div class="content">
-      <span class="title">UX Design</span>
-      <span class="category">UX / UI / Research </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/Picture4.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Concepts</span>
-      <span class="category">Design / Creative</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/2.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Creative & Cool</span>
-      <span class="category">Design / Food</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/3.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">AR-VR</span>
-      <span class="category">VR / AR / Creative</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/6.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Logo</span>
-      <span class="category">Design / Logo / Clothing</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/5.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Art</span>
-      <span class="category">Drawing / Painting / Abstract</span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/7.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
+ <a href="#" class="card tech">
     <div class="content">
       <span class="title">Native Apps</span>
       <span class="category">Coding / Mobile </span>
     </div>
     <div class="image">
-      <img src="~/assets/image/Gallery/8.jpg" alt="" />
+      <img src="~/assets/image/Gallery/60.jpg" alt="" />
     </div>
-  </a>
+  </a> 
 
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/9.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/10.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/11.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card space">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/12.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/13.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/14.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/15.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/16.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/17.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/18.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/19.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/20.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/21.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/22.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/23.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/24.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/25.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/26.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/27.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/28.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/29.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/30.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/31.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/32.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/33.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/34.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/35.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/36.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/40.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/38.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/39.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/41.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/42.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/43.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/44.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/45.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/46.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/47.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/48.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/49.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/50.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/51.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/52.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/53.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/54.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/55.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/56.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/57.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
-    <div class="content">
-      <span class="title">Native Apps</span>
-      <span class="category">Coding / Mobile </span>
-    </div>
-    <div class="image">
-      <img src="~/assets/image/Gallery/58.jpg" alt="" />
-    </div>
-  </a>
-
-  <a href="#" class="card">
+   <a href="#" class="card animals">
     <div class="content">
       <span class="title">Native Apps</span>
       <span class="category">Coding / Mobile </span>
@@ -616,132 +34,179 @@
     </div>
   </a>
 
-  <a href="#" class="card">
+  <a href="#" class="card space animals">
+    <div class="content">
+      <span class="title">Web Design</span>
+      <span class="category">Mobile / Design / Rebranding</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/1.jpg" alt="" />
+    </div>
+  </a>
+   <a href="#" class="card space people">
+    <div class="content">
+      <span class="title">UX Design</span>
+      <span class="category">UX / UI / Research </span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/Picture4.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space tech">
+    <div class="content">
+      <span class="title">Concepts</span>
+      <span class="category">Design / Creative</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/2.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space nature">
+    <div class="content">
+      <span class="title">Creative & Cool</span>
+      <span class="category">Design / Food</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/3.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space animals">
+    <div class="content">
+      <span class="title">AR-VR</span>
+      <span class="category">VR / AR / Creative</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/6.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space nature">
+    <div class="content">
+      <span class="title">Logo</span>
+      <span class="category">Design / Logo / Clothing</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/5.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space tech">
+    <div class="content">
+      <span class="title">Art</span>
+      <span class="category">Drawing / Painting / Abstract</span>
+    </div>
+    <div class="image">
+      <img src="~/assets/image/Gallery/7.jpg" alt="" />
+    </div>
+  </a>
+  <a href="#" class="card space people">
     <div class="content">
       <span class="title">Native Apps</span>
       <span class="category">Coding / Mobile </span>
     </div>
     <div class="image">
-      <img src="~/assets/image/Gallery/60.jpg" alt="" />
+      <img src="~/assets/image/Gallery/8.jpg" alt="" />
     </div>
-  </a> -->
+    </a>
 
 
 
-</div>
-</div>
+
+    
+    </div>
+
+   </div>
 </template>
-<script>
-  export default {
-    data: () => ({
-    
-    }),
-    mounted() {
-      const recaptchaScript = document.createElement('script')
-      recaptchaScript.setAttribute('src', 'https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=61129bb2ecedf803564c68ec')
-      document.head.appendChild(recaptchaScript)
-
-      const deneme = document.createElement('script')
-      deneme.setAttribute('src', 'https://assets.website-files.com/61129bb2ecedf803564c68ec/js/webflow.19742290c.js')
-      document.head.appendChild(deneme)
-    },
-    methods: {
-      
-    }
-  }
-</script>
-<script>
-export default {
- 
-  data() {
-    return {
-      ascending: true,
-      sortBy: 'alphabetically',
-      searchValue: '',
-      maxCookingTime: null,
-    recipes: [
-    {title: 'Pizza', description: 'Yummy pizza for those lazy days', ingredients: ['Dough', 'Tomato Paste', 'Cheese', 'Bell Pepper', 'Onion'], cookingTime: 60, img:'/_nuxt/assets/image/Gallery/1.jpg'},
-    {title: 'Burritos', description: 'Healthy yet very tasty burritos', ingredients: ['Burritos', 'Kidney beans', 'Onion', 'Tomato', 'Bell Pepper'], cookingTime: 30, img: 'https://images.unsplash.com/photo-1566740933430-b5e70b06d2d5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'},
-    {title: 'Tomato Soup', description: 'A tasty tomato soup for the cold', ingredients: ['Tomatoes', 'Onion', 'Oregano'], cookingTime: 45, img: 'https://images.unsplash.com/photo-1553881781-4c55163dc5fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'},
-    {title: 'Ice Cream', description: 'Just because... Ice Cream', ingredients: ['Whole milk', 'Cream', 'Eggs', 'Sugar'], cookingTime: 120, img: 'https://images.unsplash.com/photo-1515037028865-0a2a82603f7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1321&q=80'},
-    {title: 'deneme', description: 'Just because... Ice Cream', ingredients: ['Whole milk', 'Cream', 'Eggs', 'Sugar'], cookingTime: 120, img: 'https://images.unsplash.com/photo-1515037028865-0a2a82603f7c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1321&q=80'},
-    ]
-    };
-  },
-  computed: {
-  filteredRecipes() {
-    let tempRecipes = this.recipes
-    
-    // Process search input
-    if (this.searchValue != '' && this.searchValue) {
-        tempRecipes = tempRecipes.filter((item) => {
-          return item.title
-            .toUpperCase()
-            .includes(this.searchValue.toUpperCase())
-        })
-      }
-      
-      // Filter out by cooking time
-      if (this.maxCookingTime)
-      tempRecipes = tempRecipes.filter((item) => {
-        return (item.cookingTime <= this.maxCookingTime)
-      })
-           
-    // Sort by alphabetical order
-        tempRecipes = tempRecipes.sort((a, b) => {
-            if (this.sortBy == 'alphabetically') {
-                let fa = a.title.toLowerCase(), fb = b.title.toLowerCase()
-          
-              if (fa < fb) {
-                return -1
-              }
-              if (fa > fb) {
-                return 1 
-              }
-              return 0
-              
-              // Sort by cooking time
-            } else if (this.sortBy == 'cookingTime') {
-              return a.cookingTime - b.cookingTime
-        }
-        })
-        
-        // Show sorted array in descending or ascending order
-        if (!this.ascending) {
-        	tempRecipes.reverse()
-        }
-        
-        return tempRecipes
-    }
-  }
-};
-</script>
-<style scoped>
-
-h1 {
-  font-size: 1.5em;
+<style  scoped>
+@import url("https://fonts.googleapis.com/css?family=Poppins:400");
+*{
+  box-sizing: border-box;
+}
+html{
+  font: 16px/1.6 'Poppins', system-ui, sans-serif;
+}
+body{
+	padding: 2em 1rem;
+	text-align: center !important;
+}
+[type="radio"]{
+  display: none;
+}
+label{
+  padding: 0.25rem 0.75rem !important;
+  border-radius: 0.25rem !important;
+  cursor: pointer !important;
+  transition: 0.25s !important;
+}
+[type="radio"]:checked + label{
+	background: #f0efeb;
+}
+[type="radio"]:nth-of-type(2):checked ~ .gallery .card:not(.animals),
+[type="radio"]:nth-of-type(3):checked ~ .gallery .card:not(.nature),
+[type="radio"]:nth-of-type(4):checked ~ .gallery .card:not(.people),
+[type="radio"]:nth-of-type(5):checked ~ .gallery .card:not(.tech)
+{
+  display: none;
+}
+.gallery{
+  display: grid;
+	justify-content: center;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+.card{
+  margin: 0;
+  background: darkslateblue;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px silver;
+  transition: box-shadow 0.35s;
+}
+.card:hover{
+  box-shadow: 0 0 25px #0009;
+}
+.card__image{
+  width: 100%;
+  object-fit: cover;
+}
+.card__caption{
+	font-weight: bold;
+  font-variant: small-caps;
+  padding: 0.5rem;
+  text-align: center;
+  color: gold;
 }
 
-p {
-  font-size: 1em;
+/* Donate layer */
+.donate{
+	position: fixed;
+	bottom: 0.25rem;
+	right: 0.25rem; 
+	border-radius: 0.5rem;
+	background-color: whitesmoke;
+	padding: 0 1rem;
+	font-weight: bold;
+	color: dimgray;
+}
+.donate a{
+	text-decoration: none;
+	color: orangered;
+	border-bottom: 2px solid transparent;
+	transition: 0.35s;
+}
+.donate a:hover{
+	border-bottom-color: orangered;
 }
 
 
 
-* {
-  margin: 0 !important;
-  padding: 0;
-}
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
+
 .portfolio {
   display: flex;
   flex-wrap: wrap;
   min-width: 320px;
 }
-
 .portfolio h2 {
   flex-basis: 100%;
   text-align: center;
@@ -753,7 +218,7 @@ body {
 }
 .card {
   /* width was 20% */
-  width: 25%;
+  
   overflow: hidden;
   position: relative;
 }
@@ -766,7 +231,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 12px;
   box-sizing: border-box;
   min-height: 100px;
   background: #111;
@@ -781,16 +246,13 @@ body {
   transition: all 0.5s ease;
   transform: scale(1.2);
 }
-
 .card:hover .content {
   bottom: 0px;
   color: #fff;
 }
-
 .card:hover .image img {
   transform: scale(1);
 }
-
 .card .content span:first-child {
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -800,15 +262,12 @@ body {
   color: #fff;
   font-size: 16px;
 }
-
 .card .content span:last-child {
   font-size: 14px;
   color: #18cfab;
   text-align: center;
   font-weight: 700;
 }
-
-
 @media screen and (max-width: 768px) {
   .card {
   width: 50%;
@@ -817,21 +276,22 @@ body {
     bottom: 0;
   }
 }
-
 @media screen and (max-width: 480px) {
   .card {
   width: 100%;
   }
 }
-
 .card{
     border-radius: 0px!important;
     
 }
-
 .background-color-gallery {
   background: linear-gradient(180deg, #6B705C 0%,  #CB997E 20%,
                                       #A09881 40%, #FFE8D6 60%,
                                       #807362 80%, #A4594C 99%);
+}
+
+label {
+     display: unset !important; 
 }
 </style>
