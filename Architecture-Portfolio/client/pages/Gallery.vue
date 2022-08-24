@@ -2,17 +2,21 @@
 
    <div style="
     text-align: center;
-    margin-top: 1em;
-">
+    padding-top: 4em;
+    padding-bottom: 5em;
+    "
+    class="background-color-gallery" >
 
-      <meta name="viewport" content="width=device-width">
-  <input type="radio" name="filter" id="all" checked><label for="all">ALL</label>
-  <input type="radio" name="filter" id="animals"><label for="animals">Exterior</label>
-  <input type="radio" name="filter" id="nature"><label for="nature">Interior</label>
-  <input type="radio" name="filter" id="people"><label for="people">Furniture</label>
-  <input type="radio" name="filter" id="tech"><label for="tech">Modern</label>
+
+    <meta name="viewport" content="width=device-width">
+  <input type="radio" name="filter" id="all" checked><label class="nav" for="all">ALL</label>
+  <input type="radio" name="filter" id="animals"><label class="nav" for="animals">Exterior</label>
+  <input type="radio" name="filter" id="nature"><label class="nav" for="nature">Interior</label>
+  <input type="radio" name="filter" id="people"><label class="nav" for="people">Furniture</label>
+  <input type="radio" name="filter" id="tech"><label class="nav" for="tech">Modern</label>
   <div class="gallery">
-    
+
+
 
  <a href="#" class="card tech">
     <div class="content">
@@ -46,7 +50,7 @@
    <a href="#" class="card space people">
     <div class="content">
       <span class="title">UX Design</span>
-      <span class="category">UX / UI / Research </span>
+      <span class="category">UX / UI / Research</span>
     </div>
     <div class="image">
       <img src="~/assets/image/Gallery/Picture4.jpg" alt="" />
@@ -151,20 +155,21 @@ label{
 	justify-content: center;
   grid-template-columns: repeat(auto-fit, 300px);
   grid-auto-rows: 1fr;
-  grid-gap: 1rem;
+  /* grid-gap: 1rem; */
   padding: 0.5rem;
   margin-top: 1rem;
+  padding-top: 2rem;
 }
 .card{
   margin: 0;
   background: darkslateblue;
   border-radius: 0.25rem;
   overflow: hidden;
-  box-shadow: 0 0 10px silver;
+  box-shadow: 0 0 10px var(--mediumGray);
   transition: box-shadow 0.35s;
 }
 .card:hover{
-  box-shadow: 0 0 25px #0009;
+  box-shadow: 0 0 25px var(--darkGreen);
 }
 .card__image{
   width: 100%;
@@ -264,7 +269,7 @@ label{
 }
 .card .content span:last-child {
   font-size: 14px;
-  color: #18cfab;
+  color: var(--darkGreen);
   text-align: center;
   font-weight: 700;
 }
@@ -286,12 +291,24 @@ label{
     
 }
 .background-color-gallery {
-  background: linear-gradient(180deg, #6B705C 0%,  #CB997E 20%,
+  background: linear-gradient(180deg, #A5A58D 0%, /*#CB997E 20%,
                                       #A09881 40%, #FFE8D6 60%,
-                                      #807362 80%, #A4594C 99%);
+                                      #807362 80%,*/ #6B705C 99%);
 }
 
 label {
      display: unset !important; 
+}
+
+.nav {
+  color: var(--textColor);
+  background-color: var(--2xLightGray);
+  transition: opacity 300ms ease;
+  
+}
+
+.nav:hover {
+  background-color: var(--darkGreen);
+  
 }
 </style>

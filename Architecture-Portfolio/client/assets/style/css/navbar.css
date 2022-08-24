@@ -915,6 +915,23 @@ html {
       width: 100%;
     }
   }
+
+ /* Iphone 6/7/8 Plus */
+
+  /* @media screen and (max-width: 736px) {
+    html {
+      width: 106%;
+    }
+  } */
+
+  /* Iphone 6/7/8 */
+
+  /* @media screen and (max-width: 667px) {
+    html {
+      width: 116%;
+    }
+  } */
+
   @media screen and (max-width: 479px) {
     .background-color {
       height: 19000px;
@@ -8390,9 +8407,16 @@ html {
     font-weight: 700;
   }
   
-  
+  /* @media screen and (min-width: 1366px) {
+    html {
+      width: 135%;
+    }
+  } */
 
   @media screen and (min-width: 1024px) {
+    /* html {
+      width: 135%;
+    } */
     .background-color {
       height: 15000px;
       background: linear-gradient(180deg, #6B705C 0%, #CB997E 20%,
