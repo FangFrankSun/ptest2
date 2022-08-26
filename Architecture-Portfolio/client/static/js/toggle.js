@@ -59,3 +59,7 @@ function scrollReveal() {
 
 window.addEventListener("scroll", scrollReveal);
 scrollReveal();
+
+
+// Mobile Navbar Collapse On Click
+

@@ -1,7 +1,7 @@
 <template>
   <div class="page main-page">
     <Hero />
-    <MyServices />
+    <MyAwards />
     <Projects />
     <Aboutme />
   </div>
@@ -9,12 +9,12 @@
 
 <script>
 import Hero from './Hero.vue'
-import MyServices from './MyServices.vue'
+import MyAwards from './MyAwards.vue'
 import Projects from './Projects.vue'
 import Aboutme from './Aboutme.vue'
 export default {
   name: 'IndexPage',
-  components: { Hero, MyServices, Projects, Aboutme },
+  components: { Hero, MyAwards, Projects, Aboutme },
 }
 </script>
 
