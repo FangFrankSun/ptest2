@@ -17,4 +17,3 @@ export default {
   components: { Hero, MyAwards, Projects, Aboutme },
 }
 </script>
-

@@ -850,6 +850,8 @@ html {
   }
   }
   @media screen and (max-width: 767px) {
+   
+ 
   .pages-up{
   display: flex;
   }
@@ -7674,7 +7676,7 @@ html {
   }
   @media screen and (max-width: 991px) {
   .image-smaller {
-  width: 75%;
+  width: 100%;
   border-radius: 24px;
   }
   .top-content {
@@ -8476,7 +8478,6 @@ html {
   .footer-div {
   display: flex;
   margin-right: 130px;
-  margin-left: -40px;
   }
   .pages-up {
   display: block;
@@ -9296,11 +9297,13 @@ html {
   .top-content {
   padding-left: 30px;
   }
+  
   .more-projects-width{
   width: 208%;
   }
   .title.portfolio {
   margin-left: -25px;
+  font-size: 1em;
   }
   .more-projects-margin-83 {
   margin-left: 10px;
@@ -9330,6 +9333,7 @@ html {
   .pages-down {
   display: none;
   }
+
   h1 {
   margin-bottom: 10px;
   font-size: 38px;
@@ -10156,7 +10160,6 @@ html {
   }
   .more-button2 {
   padding-top: 100px;
-  padding-left: 150px;
   }
   .center {
   text-align: center;
@@ -10164,9 +10167,7 @@ html {
   .padding-top {
   padding-top: 80px;
   }
-  .padding-top2 {
-  padding-top: 150px;
-  }
+  
   .padding {
   padding: 50px;
   }
