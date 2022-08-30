@@ -1,225 +1,47 @@
 <template>
   <div class="section pd-top-bottom-200px wf-section">
     <div class="container-default w-container">
-      <div
-        data-w-id="958960c1-23c4-b448-27ed-e4d2345aee47"
-        style="
-        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
-        rotateY(0deg) rotateZ(0deg) skew(0deg);
-        opacity: 1;
-        transform-style: preserve-3d;
-        "
-        class="top-content portfolio-top-content"
-        >
+      <div class="top-content portfolio-top-content">
         <div class="split-content portfolio-left content-overlay">
           <h2 class="title portfolio">Take a look at my projects</h2>
           <img
             src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112bdfb2b341387dfa368b4_portfolio-underline-personal-x-template.svg"
-            alt=""
             class="image portfolio-underline"
             />
         </div>
       </div>
-      <div
-        data-w-id="69f75c50-8619-7ebb-912d-114e45cb4c1a"
-        style="
-        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
-        rotateY(0deg) rotateZ(0deg) skew(0deg);
-        opacity: 1;
-        transform-style: preserve-3d;
-        "
-        class="home-portfolio-slider-main-wrapper"
-        >
-        <div
-          data-delay=""
-          data-animation=""
-          class=""
-          data-autoplay=""
-          data-easing=""
-          data-hide-arrows=""
-          data-disable-swipe=""
-          data-autoplay-limit=""
-          data-nav-spacing=""
-          data-duration=""
-          data-infinite=""
-          role=""
-          aria-label=""
-          >
+      <div class="home-portfolio-slider-main-wrapper">
+        <div>
           <div
             class="home-portfolio-slider-mask w-slider-mask flex-direction-column"
             id="w-slider-mask-0"
             >
-            <div aria-label="1 of 12"
+            <div
               role="group"
               class="home-portfolio-slide w-slide"
               style="transform: translateX(0px); opacity: 1">
-              <div class="w-dyn-list">
+              <div class="w-dyn-list" v-for="project in projects"
+                    :key="project.id">
                 <div role="list" class="w-dyn-items">
                   <div role="listitem" class="w-dyn-item more-projects-width">
-                    <a  class="card home-portfolio-card w-inline-block flex-direction-row">
+                    <a class="card home-portfolio-card w-inline-block flex-direction-row">
                       <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">Ağaoğlu Maslak 1453</h3>
+                        <h3 class="title home-portfolio-card">{{project.name}}</h3>
                         <div class="wg-box-content">
-                    <a >
-                    <div class="wg-box-content-overlay"></div>
-                    <img
-                      src="~/assets/image/Maslak-1453.jpg"
-                      alt="Todo List Mobile App Redesign"
-                      sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                      class="border-radius image"
-                      />
-                    <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                    <h3 class="wg-box-content-title">Project Manager - AB Section</h3>
-                    <p class="wg-box-content-text">
-                    10.2014 - 10.2018<br></br>
-                    &emsp;<b>Head of Construction Group</b><br></br>
-                    1 870 000m2, 3880 Residences, 1000 Offices, University,<br>
-                    Shopping Mall, Hotel, 10 Cinema Halls, 3 Congress Halls,<br>
-                    32 Blocks between 11 and 51 variable floors<br></br>
-                    Reference: Abdullah Murad ACAR - General Coordinator
-                    </p>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-label="2 of 12"
-              role="group"
-              class="home-portfolio-slide w-slide padding-top2 reveal">
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items">
-                  <div role="listitem" class="w-dyn-item more-projects-width">
-                    <a  class="card home-portfolio-card w-inline-block flex-direction-row">
-                      <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">Ağaoğlu My Home Ayazağa</h3>
-                        <div class="wg-box-content">
-                    <a >
-                    <div class="wg-box-content-overlay"></div>
-                    <img
-                      src="~/assets/image/MyHomeAyazağa.jpg"
-                      alt="Todo List Mobile App Redesign"
-                      sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                      class="border-radius image"
-                      />
-                    <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                    <h3 class="wg-box-content-title">Deputy Project Manager<br>Decoration Works Manager</h3>
-                    <p class="wg-box-content-text">
-                    05.2013 - 10.2014<br></br>
-                    260000m2, 800 Residences,<br>
-                    100 Offices, Markets,<br>
-                    3 Blocks with 41 floors<br></br>
-                    Reference: Adem Yıldırım - Project Manager
-                    </p>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-label="3 of 12"
-              role="group"
-              class="home-portfolio-slide w-slide padding-top2 reveal">
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items ">
-                  <div role="listitem" class="w-dyn-item more-projects-width">
-                    <a  class="card home-portfolio-card w-inline-block flex-direction-row">
-                      <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">Dünya Göz Hospital</h3>
-                        <div class="wg-box-content">
-                    <a >
-                    <div class="wg-box-content-overlay"></div>
-                    <img
-                      src="~/assets/image/dunyagoz-pendik.jpg"
-                      alt="Todo List Mobile App Redesign"
-                      sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                      class="border-radius image"
-                      />
-                    <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                    <h3 class="wg-box-content-title">Project Manager</h3>
-                    <p class="wg-box-content-text">
-                    02.2011 - 06.2011<br></br>
-                    2500m2 Construciton Zone<br></br>
-                    Reference: Enver Küçükalı (Serpent Architecture)
-                    </p>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-label="4 of 12"
-              role="group"
-              class="home-portfolio-slide w-slide padding-top2 reveal">
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items">
-                  <div role="listitem" class="w-dyn-item more-projects-width">
-                    <a  class="card home-portfolio-card w-inline-block flex-direction-row">
-                      <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">Vodafone Digital Operations Center</h3>
-                        <div class="wg-box-content">
-                    <a >
-                    <div class="wg-box-content-overlay"></div>
-                    <img
-                      src="~/assets/image/Vodafone.png"
-                      alt="Todo List Mobile App Redesign"
-                      sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                      class="border-radius image"
-                      />
-                    <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                    <h3 class="wg-box-content-title">Project Manager</h3>
-                    <p class="wg-box-content-text">
-                    10.2009 - 02.2011<br></br>
-                    19000m2 Construciton Zone<br></br>
-                    Reference: Enver Küçükalı (Serpent Architecture)
-                    </p>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div aria-label="5 of 12"
-              role="group"
-              class="home-portfolio-slide w-slide padding-top2 reveal">
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items">
-                  <div role="listitem" class="w-dyn-item more-projects-width">
-                    <a  class="card home-portfolio-card w-inline-block flex-direction-row">
-                      <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">WOW Congress Center Istanbul</h3>
-                        <div class="wg-box-content">
-                    <a >
-                    <div class="wg-box-content-overlay"></div>
-                    <img
-                      src="~/assets/image/wow.webp"
-                      alt="Todo List Mobile App Redesign"
-                      sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                      class="border-radius image"
-                      />
-                    <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                    <h3 class="wg-box-content-title">Site Chief</h3>
-                    <p class="wg-box-content-text">
-                    06.2011 - 04.2012<br></br>
-                    15000m2 Construciton Zone<br></br>
-                    Reference: Muzaffer Küpe
-                    </p>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
+                          <a>
+                            <div class="wg-box-content-overlay"></div>
+                            <img :src="project.img"  alt="Todo List Mobile App Redesign"
+                              sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
+                              class="border-radius image"/>
+                            <div class="wg-box-content-details wg-box-fadeIn-bottom">
+                              <h3 class="wg-box-content-title">{{project.role}}<br>{{project.role2}}</h3>
+                              <p class="wg-box-content-text">{{project.year}}</p>
+                              <p class="wg-box-content-text">{{project.description}}</p>
+                              <p class="wg-box-content-text">{{project.reference}}</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                     </a>
                   </div>
                 </div>
@@ -232,8 +54,58 @@
   </div>
 </template>
 <script>
-  //   import MoreProjectsTemplate from "~/components/MoreProjectsTemplate.vue";
-  
+  export default {
+    data() {
+      return {
+        projects: [
+          {
+            name: 'Ağaoğlu Maslak 1453',
+            role:'Project Manager - AB Section',
+            role2:'Head of Construction Group 1',
+            year: '10.2014 - 10.2018',
+            description: '870 000m2, 3880 Residences, 1000 Offices, University, Shopping Mall, Hotel, 10 Cinema Halls, 3 Congress Halls, 32 Blocks between 11 and 51 variable floors',
+            img: '/_nuxt/assets/image/Maslak-1453.jpg',
+            reference: 'Reference: Abdullah Murad ACAR - General Coordinator'
+          },
+          {
+            name: 'Ağaoğlu My Home Ayazağa',
+            role:'Deputy Project Manager',
+            role2:'Decoration Works Manager',
+            year: '05.2013 - 10.2014',
+            description: '260000m2, 800 Residences,  100 Offices, Markets,  3 Blocks with 41 floors',
+            img: '/_nuxt/assets/image/MyHomeAyazağa.jpg',
+            reference: 'Reference: Adem Yıldırım - Project Manager'
+          },
+          {
+            name: 'Dünya Göz Hospital',
+            role:'Project Manager',
+            year: '02.2011 - 06.2011',
+            description: '2500m2 Construciton Zone',
+            img: '/_nuxt/assets/image/dunyagoz-pendik.jpg',
+            reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
+          },
+          {
+            name: 'Vodafone Digital Operations Center',
+            role:'Project Manager',
+            year: '10.2009 - 02.2011',
+            description: '19000m2 Construciton Zone',
+            img: '/_nuxt/assets/image/Vodafone.png',
+            reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
+          },
+          {
+            name: 'WOW Congress Center Istanbul',
+            role:'Site Chief',
+            year: '06.2011 - 04.2012',
+            description: '15000m2 Construciton Zone',
+            img: '/_nuxt/assets/image/wow.webp',
+            reference: 'Reference: Muzaffer Küpe'
+          },
+          
+        ],
+      
+      }
+    },
+  }
 </script>
 <style>
   .main-title{
@@ -408,4 +280,5 @@ line-height: 1;
   .background-color-projects {
   background: linear-gradient(180deg, #F5F5F3, #A09881);
   }
+  
 </style>

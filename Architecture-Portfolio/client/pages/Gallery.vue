@@ -11,89 +11,102 @@
     <input type="radio" name="filter" id="interior"><label class="nav" for="interior">Interior</label>
     <input type="radio" name="filter" id="furniture"><label class="nav" for="furniture">Furniture</label>
     <div class="gallery">
-      <a href="#" class="card exterior">
+      <a class="card exterior" v-for="photo in exterior"
+        :key="photo.id">
         <div class="content">
-          <span class="category">Exterior Design</span>
+          <span class="category">{{photo.category}}</span>
         </div>
         <div class="image">
-          <img src="~/assets/image/Gallery/60.jpg" alt="" />
+          <img :src="photo.img"/>
         </div>
       </a>
-      <a href="#" class="card exterior">
+      <a class="card interior" v-for="photo in interior"
+        :key="photo.id">
         <div class="content">
-          <span class="category">Exterior Design</span>
+          <span class="category">{{photo.category}}</span>
         </div>
         <div class="image">
-          <img src="~/assets/image/Gallery/59.jpg" alt="" />
+          <img :src="photo.img"/>
         </div>
       </a>
-      <a href="#" class="card space interior">
+      <a class="card furniture" v-for="photo in furniture"
+        :key="photo.id">
         <div class="content">
-          <span class="category">Interior Design</span>
+          <span class="category">{{photo.category}}</span>
         </div>
         <div class="image">
-          <img src="~/assets/image/Gallery/1.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior furniture">
-        <div class="content">
-          <span class="category">Interior Design / Furniture</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/Picture4.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior">
-        <div class="content">
-          <span class="category">Interior Design</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/2.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior furniture">
-        <div class="content">
-          <span class="category">Interior Design / Furniture</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/3.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior furniture">
-        <div class="content">
-          <span class="category">Interior Design / Furniture</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/6.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior furniture">
-        <div class="content">
-          <span class="category">Interior Design / Furniture</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/5.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior">
-        <div class="content">
-          <span class="category">Interior Design</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/7.jpg" alt="" />
-        </div>
-      </a>
-      <a href="#" class="card space interior furniture">
-        <div class="content">
-          <span class="category">Furniture</span>
-        </div>
-        <div class="image">
-          <img src="~/assets/image/Gallery/8.jpg" alt="" />
+          <img :src="photo.img"/>
         </div>
       </a>
     </div>
   </div>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        exterior: [
+          {
+            category: 'Exterior Design',
+            img: '/_nuxt/assets/image/Gallery/60.jpg',
+            id:1
+          },
+          {
+            category: 'Exterior Design',
+            img: '/_nuxt/assets/image/Gallery/59.jpg',
+            id:2
+          },
+        ],
+  
+        interior: [
+          {
+            category: 'Interior Design',
+            img: '/_nuxt/assets/image/Gallery/1.jpg',
+            id:3
+          },
+          {
+            category: 'Interior Design',
+            img: '/_nuxt/assets/image/Gallery/7.jpg',
+            id:9
+          },
+        ],
+  
+        furniture: [
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/2.jpg',
+            id:4
+          },
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/Picture4.jpg',
+            id:5
+          },
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/3.jpg',
+            id:6
+          },
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/6.jpg',
+            id:7
+          },
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/5.jpg',
+            id:8
+          },
+          {
+            category: 'Furniture',
+            img: '/_nuxt/assets/image/Gallery/8.jpg',
+            id:10
+          },
+        ],
+      }
+    },
+  }
+</script>
 <style  scoped>
   @import url("https://fonts.googleapis.com/css?family=Poppins:400");
   *{

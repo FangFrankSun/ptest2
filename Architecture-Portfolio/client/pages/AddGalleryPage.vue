@@ -21,9 +21,11 @@
       <div class="col-md-4">
         <form @submit.prevent="submitRecipe">
           <div class="checkbox">
-            <label for="interior"><input type="checkbox" id="interior" name="interior">Interior</label>
-            <label for="exterior"><input type="checkbox" id="exterior" name="exterior">Exterior</label>
-            <label for="furniture"><input type="checkbox" id="furniture" name="furniture">Furniture</label>
+            <div v-for="category in categories" :key="category.id">
+              <label>
+                <input type="checkbox"> {{category.category}} </input>
+              </label>
+            </div>
           </div>
           <div class="">
             <button type="submit" class="button-primary w-button">Submit</button>
@@ -35,60 +37,23 @@
 </template>
 <script>
   export default {
-    head() {
-      return {
-        title: "Add Recipe"
-      };
-    },
     data() {
       return {
-        recipe: {
-          name: "",
-          picture: "",
-          ingredients: "",
-          difficulty:  "",
-          prep_time: null,
-          prep_guide:  "",
-        },
-        preview: ""
-      };
-    },
-    methods: {
-      onFileChange(e) {
-        let files = e.target.files || e.dataTransfer.files;
-        if (!files.length) {
-          return;
-        }
-        this.recipe.picture = files[0];
-        this.createImage(files[0]);
-      },
-      createImage(file) {
-        // let image = new Image();
-        let reader = new FileReader();
-        let vm = this;
-        reader.onload = e => {
-          vm.preview = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      },
-      async submitRecipe() {
-        const config = {
-          headers: { "content-type": "multipart/form-data" }
-        };
-        let formData = new FormData();
-        for (let data in this.recipe) {
-          formData.append(data, this.recipe[data]);
-        }
-        try {
-          let response = await this.$axios.$post("/recipes/", formData, config);
-          this.$router.push("/recipes/");
-        } catch (e) {
-          console.log(e);
-        }
+        categories: [
+          {
+            category: 'Interior Design',
+          },
+          {
+            category: 'Exterior Design',
+          },
+          {
+            category: 'Furniture',
+          },
+        ],
       }
-    }
-  };
-</script>
+    },
+  }
+  </script>
 <style scoped>
   .category {
   padding: 24px 20px;
