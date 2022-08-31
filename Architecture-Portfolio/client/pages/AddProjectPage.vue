@@ -18,15 +18,22 @@
           >
         <input type="file" name="file" class="chooseFile" @change="onFileChange"></input>
       </div>
-      <div class="col-md-4" style="margin-top: 1.5em;">
+      <div class="col-md-4" style="margin-top: 2.3em;" v-for="project in projects" :key="project.id">
         <form @submit.prevent="">
           <div class="form-group">
-            <label for>Project Name</label>
-            <input type="text" class="form-control">
+            <input type="text" v-model="project.name" class="form-control" placeholder="Project Name (e.g. Ağaoğlu Maslak 1453)">
           </div>
           <div class="form-group">
-            <label for>Description</label>
-            <textarea type="text" rows="8" class="form-control"></textarea>
+            <input type="text" v-model="project.role" class="form-control" placeholder="Role (e.g. Project Manager)">
+          </div>
+          <div class="form-group">
+            <input type="text" v-model="project.year" class="form-control" placeholder="Year (e.g. 10.2014 - 10.2018)">
+          </div>
+          <div class="form-group">
+            <textarea type="text" rows="7" v-model="project.description" class="form-control" placeholder="Description (e.g. )"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" v-model="project.reference" class="form-control">
           </div>
           <div class="button-padding">
             <button type="submit" class="button-primary w-button">Submit</button>
@@ -40,7 +47,16 @@
   export default {
     data () {
       return {
-        
+        projects: [ 
+          {
+            name: '',
+            role:'',
+            year: '',
+            description: '',
+            img: '',
+            reference: 'Reference: '
+          }
+        ]
       }
     },
 
@@ -77,5 +93,13 @@
   .button-padding {
   padding-top: 2.1em;
   padding-bottom: 0px;
+  }
+
+  ::placeholder {
+    opacity: 0.6;
+  }
+
+  input[title~=reference] {
+
   }
 </style>

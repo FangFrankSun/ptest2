@@ -1,10 +1,6 @@
 <template>
-  <div style="
-    text-align: center;
-    padding-top: 4em;
-    padding-bottom: 5em;
-    "
-    class="background-color-gallery" >
+  <div style=" text-align: center; padding-top: 4em; padding-bottom: 5em;"
+       class="background-color-gallery">
     <meta name="viewport" content="width=device-width">
     <input type="radio" name="filter" id="all" checked><label class="nav" for="all">ALL</label>
     <input type="radio" name="filter" id="exterior"><label class="nav" for="exterior">Exterior</label>
@@ -48,12 +44,12 @@
         exterior: [
           {
             category: 'Exterior Design',
-            img: '/_nuxt/assets/image/Gallery/60.jpg',
+            img: require('assets/image/Gallery/60.jpg'),
             id:1
           },
           {
             category: 'Exterior Design',
-            img: '/_nuxt/assets/image/Gallery/59.jpg',
+            img: require('assets/image/Gallery/59.jpg'),
             id:2
           },
         ],
@@ -61,12 +57,12 @@
         interior: [
           {
             category: 'Interior Design',
-            img: '/_nuxt/assets/image/Gallery/1.jpg',
+            img: require('assets/image/Gallery/1.jpg'),
             id:3
           },
           {
             category: 'Interior Design',
-            img: '/_nuxt/assets/image/Gallery/7.jpg',
+            img: require('assets/image/Gallery/7.jpg'),
             id:9
           },
         ],
@@ -74,32 +70,32 @@
         furniture: [
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/2.jpg',
+            img: require('assets/image/Gallery/2.jpg'),
             id:4
           },
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/Picture4.jpg',
+            img: require('assets/image/Gallery/Picture4.jpg'),
             id:5
           },
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/3.jpg',
+            img: require('assets/image/Gallery/3.jpg'),
             id:6
           },
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/6.jpg',
+            img: require('assets/image/Gallery/6.jpg'),
             id:7
           },
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/5.jpg',
+            img: require('assets/image/Gallery/5.jpg'),
             id:8
           },
           {
             category: 'Furniture',
-            img: '/_nuxt/assets/image/Gallery/8.jpg',
+            img: require('assets/image/Gallery/8.jpg'),
             id:10
           },
         ],

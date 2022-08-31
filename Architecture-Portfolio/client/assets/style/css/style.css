@@ -1182,7 +1182,7 @@ html {
   margin-left: 63px;
   }
   .more-projects-width {
-  width: 180%;
+  width: 170%;
   }
   .w-slide {
   position: relative;
@@ -1606,12 +1606,12 @@ html {
   .w-lightbox-noscroll {
   overflow: hidden;
   }
-  @media (max-width: 769px) {
+  @media (max-width: 768px) {
   .footer-menu-wrapper {
   margin-top: 100px;
   }
   .more-projects-width{
-  width: 136%;
+  width: 130%;
   }
   }
   @media (min-width: 768px) {
@@ -9299,7 +9299,7 @@ html {
   }
   
   .more-projects-width{
-  width: 208%;
+  width: 206%;
   }
   .title.portfolio {
   margin-left: -25px;
@@ -9750,7 +9750,7 @@ html {
   margin-bottom: 56px;
   }
   .top-content.portfolio-top-content {
-  margin-bottom: 140px;
+  margin-bottom: 80px;
   }
   .top-content.articles-news {
   margin-bottom: 20px;

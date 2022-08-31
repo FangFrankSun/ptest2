@@ -56,7 +56,6 @@
             <div class="card recipe-card box-shadow">
               <img :src="photo.img" class="card-img-top"/>
               <div class="card-body">
-                <!-- <h5 class="card-title">{{ photo.name }}</h5> -->
                 <p class="card-text">{{ photo.category }}</p>
                 <div class="action-buttons">
                   <button class="btn btn-sm button-color-delete">Delete</button>
@@ -81,7 +80,7 @@
             role2:'Head of Construction Group 1',
             year: '10.2014 - 10.2018',
             description: '870 000m2, 3880 Residences, 1000 Offices, University, Shopping Mall, Hotel, 10 Cinema Halls, 3 Congress Halls, 32 Blocks between 11 and 51 variable floors',
-            img: '/_nuxt/assets/image/Maslak-1453.jpg',
+            img: require('assets/image/Maslak-1453.jpg'),
             reference: 'Reference: Abdullah Murad ACAR - General Coordinator'
           },
           {
@@ -90,7 +89,7 @@
             role2:'Decoration Works Manager',
             year: '05.2013 - 10.2014',
             description: '260000m2, 800 Residences,  100 Offices, Markets,  3 Blocks with 41 floors',
-            img: '/_nuxt/assets/image/MyHomeAyazağa.jpg',
+            img: require('assets//image/MyHomeAyazağa.jpg'),
             reference: 'Reference: Adem Yıldırım - Project Manager'
           },
           {
@@ -98,7 +97,7 @@
             role:'Project Manager',
             year: '02.2011 - 06.2011',
             description: '2500m2 Construciton Zone',
-            img: '/_nuxt/assets/image/dunyagoz-pendik.jpg',
+            img: require('assets/image/dunyagoz-pendik.jpg'),
             reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
           },
           {
@@ -106,7 +105,7 @@
             role:'Project Manager',
             year: '10.2009 - 02.2011',
             description: '19000m2 Construciton Zone',
-            img: '/_nuxt/assets/image/Vodafone.png',
+            img: require('assets/image/Vodafone.png'),
             reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
           },
           {
@@ -114,7 +113,7 @@
             role:'Site Chief',
             year: '06.2011 - 04.2012',
             description: '15000m2 Construciton Zone',
-            img: '/_nuxt/assets/image/wow.webp',
+            img: require('assets/image/wow.webp'),
             reference: 'Reference: Muzaffer Küpe'
           },
          
@@ -123,52 +122,52 @@
         gallery: [
             {
               category: 'Exterior Design',
-              img: '/_nuxt/assets/image/Gallery/60.jpg',
+              img: require('assets/image/Gallery/60.jpg'),
               id:1
             },
             {
               category: 'Exterior Design',
-              img: '/_nuxt/assets/image/Gallery/59.jpg',
+              img: require('assets/image/Gallery/59.jpg'),
               id:2
             },
             {
               category: 'Interior Design',
-              img: '/_nuxt/assets/image/Gallery/1.jpg',
+              img: require('assets/image/Gallery/1.jpg'),
               id:3
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/2.jpg',
+              img: require('assets/image/Gallery/2.jpg'),
               id:4
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/Picture4.jpg',
+              img: require('assets/image/Gallery/Picture4.jpg'),
               id:5
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/3.jpg',
+              img: require('assets/image/Gallery/3.jpg'),
               id:6
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/6.jpg',
+              img: require('assets/image/Gallery/6.jpg'),
               id:7
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/5.jpg',
+              img: require('assets/image/Gallery/5.jpg'),
               id:8
             },
             {
               category: 'Interior Design',
-              img: '/_nuxt/assets/image/Gallery/7.jpg',
+              img: require('assets/image/Gallery/7.jpg'),
               id:9
             },
             {
               category: 'Furniture',
-              img: '/_nuxt/assets/image/Gallery/8.jpg',
+              img: require('assets/image/Gallery/8.jpg'),
               id:10
             },
           ],
@@ -213,12 +212,13 @@
 
   @media screen and (max-width: 768px) {
   .card {
-  width: 50%;
+  width: 100%;
   }
   .card .content {
   bottom: 0;
   }
   }
+
   @media screen and (max-width: 480px) {
   .card {
   width: 85%;

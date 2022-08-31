@@ -138,7 +138,7 @@ line-height: 1;
 
 }
   }
-  @media screen and (min-width: 900px){
+  @media screen and (max-width: 480px){
   }
   .container .title{
   color: #1a1a1a;
@@ -266,7 +266,6 @@ line-height: 1;
   .wg-box-content-details h3{
   color: #fff;
   font-weight: 500;
-  letter-spacing: 0.15em;
   margin-bottom: 0.5em;
   text-transform: uppercase;
   }
@@ -274,6 +273,17 @@ line-height: 1;
   color: #fff;
   font-size: 0.8em;
   }
+
+  @media screen and (max-width: 480px){
+    .wg-box-content-details p {
+      font-size: 0.6em;
+    }
+  }
+
+  @media screen and (max-width: 768px){
+    
+  }
+  
   .wg-box-fadeIn-bottom{
   top: 80%;
   }

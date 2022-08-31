@@ -19,15 +19,11 @@
         <input class="chooseFile" type="file" name="file" @change="onFileChange"></input>
       </div>
       <div class="col-md-4">
-        <form @submit.prevent="submitRecipe">
-          <div class="checkbox">
-            <div v-for="category in categories" :key="category.id">
-              <label>
-                <input type="checkbox"> {{category.category}} </input>
-              </label>
-            </div>
+        <form >
+          <div class="checkbox" v-for="item in items" :key="item.id">
+              <label><input type="checkbox">{{item.category}}</label>
           </div>
-          <div class="">
+          <div>
             <button type="submit" class="button-primary w-button">Submit</button>
           </div>
         </form>
@@ -39,17 +35,17 @@
   export default {
     data() {
       return {
-        categories: [
+        items: [
           {
-            category: 'Interior Design',
+            category: 'Interior Design'
           },
           {
-            category: 'Exterior Design',
+            category: 'Exterior Design'
           },
           {
-            category: 'Furniture',
-          },
-        ],
+            category: 'Furniture'
+          }
+        ]
       }
     },
   }
