@@ -4,33 +4,28 @@
       <div class="top-content portfolio-top-content">
         <div class="split-content portfolio-left content-overlay">
           <h2 class="title portfolio">Take a look at my projects</h2>
-          <img
-            src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112bdfb2b341387dfa368b4_portfolio-underline-personal-x-template.svg"
-            class="image portfolio-underline"
-            />
+          <img src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112bdfb2b341387dfa368b4_portfolio-underline-personal-x-template.svg"
+               class="image portfolio-underline"/>
         </div>
       </div>
       <div class="home-portfolio-slider-main-wrapper">
         <div>
-          <div
-            class="home-portfolio-slider-mask w-slider-mask flex-direction-column"
-            id="w-slider-mask-0"
-            >
-            <div
-              role="group"
-              class="home-portfolio-slide w-slide"
-              style="transform: translateX(0px); opacity: 1">
+          <div class="home-portfolio-slider-mask w-slider-mask flex-direction-column"
+               id="w-slider-mask-0">
+            <div role="group"
+                 class="home-portfolio-slide w-slide"
+                 style="transform: translateX(0px); opacity: 1">
               <div class="w-dyn-list" v-for="project in projects"
-                    :key="project.id">
+                   :key="project.id">
                 <div role="list" class="w-dyn-items">
                   <div role="listitem" class="w-dyn-item more-projects-width">
                     <a class="card home-portfolio-card w-inline-block flex-direction-row">
                       <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">{{project.name}}</h3>
+                        <h3 class="title home-portfolio-card">{{project.title}}</h3>
                         <div class="wg-box-content">
                           <a>
                             <div class="wg-box-content-overlay"></div>
-                            <img :src="project.img"  alt="Todo List Mobile App Redesign"
+                            <img :src="project.image" alt="Todo List Mobile App Redesign"
                               sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
                               class="border-radius image"/>
                             <div class="wg-box-content-details wg-box-fadeIn-bottom">
@@ -64,7 +59,7 @@
             role2:'Head of Construction Group 1',
             year: '10.2014 - 10.2018',
             description: '870 000m2, 3880 Residences, 1000 Offices, University, Shopping Mall, Hotel, 10 Cinema Halls, 3 Congress Halls, 32 Blocks between 11 and 51 variable floors',
-            img: '/_nuxt/assets/image/Maslak-1453.jpg',
+            img: require('assets/image/Maslak-1453.jpg'),
             reference: 'Reference: Abdullah Murad ACAR - General Coordinator'
           },
           {
@@ -73,7 +68,7 @@
             role2:'Decoration Works Manager',
             year: '05.2013 - 10.2014',
             description: '260000m2, 800 Residences,  100 Offices, Markets,  3 Blocks with 41 floors',
-            img: '/_nuxt/assets/image/MyHomeAyazağa.jpg',
+            img: require('assets/image/MyHomeAyazağa.jpg'),
             reference: 'Reference: Adem Yıldırım - Project Manager'
           },
           {
@@ -81,7 +76,7 @@
             role:'Project Manager',
             year: '02.2011 - 06.2011',
             description: '2500m2 Construciton Zone',
-            img: '/_nuxt/assets/image/dunyagoz-pendik.jpg',
+            img: require('assets/image/dunyagoz-pendik.jpg'),
             reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
           },
           {
@@ -89,7 +84,7 @@
             role:'Project Manager',
             year: '10.2009 - 02.2011',
             description: '19000m2 Construciton Zone',
-            img: '/_nuxt/assets/image/Vodafone.png',
+            img: require('assets/image/Vodafone.png'),
             reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
           },
           {
@@ -97,17 +92,23 @@
             role:'Site Chief',
             year: '06.2011 - 04.2012',
             description: '15000m2 Construciton Zone',
-            img: '/_nuxt/assets/image/wow.webp',
+            img: require('assets/image/wow.webp'),
             reference: 'Reference: Muzaffer Küpe'
-          },
-          
+          }
         ],
-      
       }
+    },
+    async fetch() {
+      this.projects = await fetch(
+        'https://api.nuxtjs.dev/rivers'
+      ).then(res => res.json())
     },
   }
 </script>
 <style>
+  .top-content.portfolio-top-content {
+     margin-bottom: 0px!important; 
+}
   .main-title{
   color: #2d2d2d;
   text-align: center;

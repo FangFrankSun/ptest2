@@ -29,10 +29,28 @@
 </template>
 <script>
   export default {
-    layout: 'Login'
-    
-  }
-</script>
+    data: () => {
+      return {
+        username: "",
+        password: "",
+      };
+    },
+    methods: {
+      login() {
+        fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: this.username,
+            password: this.password,
+          }),
+        });
+      },
+    },
+  };
+  </script>
 <style scoped>
   * {
   margin: 0;

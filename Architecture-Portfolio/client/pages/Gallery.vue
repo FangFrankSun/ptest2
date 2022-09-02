@@ -7,33 +7,40 @@
     <input type="radio" name="filter" id="interior"><label class="nav" for="interior">Interior</label>
     <input type="radio" name="filter" id="furniture"><label class="nav" for="furniture">Furniture</label>
     <div class="gallery">
+
+      <!-- EXTERIOR -->
       <a class="card exterior" v-for="photo in exterior"
         :key="photo.id">
         <div class="content">
-          <span class="category">{{photo.category}}</span>
+          <span class="category">{{photo.title}}</span>
         </div>
         <div class="image">
-          <img :src="photo.img"/>
+          <img :src="photo.image"/>
         </div>
       </a>
+
+      <!-- INTERIOR -->
       <a class="card interior" v-for="photo in interior"
         :key="photo.id">
         <div class="content">
-          <span class="category">{{photo.category}}</span>
+          <span class="category">{{photo.title}}</span>
         </div>
         <div class="image">
-          <img :src="photo.img"/>
+          <img :src="photo.image"/>
         </div>
       </a>
+
+      <!-- FURNITURE -->
       <a class="card furniture" v-for="photo in furniture"
         :key="photo.id">
         <div class="content">
-          <span class="category">{{photo.category}}</span>
+          <span class="category">{{photo.name}}</span>
         </div>
         <div class="image">
-          <img :src="photo.img"/>
+          <img :src="photo.image_url"/>
         </div>
       </a>
+      
     </div>
   </div>
 </template>
@@ -41,66 +48,28 @@
   export default {
     data() {
       return {
-        exterior: [
-          {
-            category: 'Exterior Design',
-            img: require('assets/image/Gallery/60.jpg'),
-            id:1
-          },
-          {
-            category: 'Exterior Design',
-            img: require('assets/image/Gallery/59.jpg'),
-            id:2
-          },
-        ],
+        exterior: [],
   
-        interior: [
-          {
-            category: 'Interior Design',
-            img: require('assets/image/Gallery/1.jpg'),
-            id:3
-          },
-          {
-            category: 'Interior Design',
-            img: require('assets/image/Gallery/7.jpg'),
-            id:9
-          },
-        ],
+        interior: [],
   
-        furniture: [
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/2.jpg'),
-            id:4
-          },
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/Picture4.jpg'),
-            id:5
-          },
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/3.jpg'),
-            id:6
-          },
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/6.jpg'),
-            id:7
-          },
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/5.jpg'),
-            id:8
-          },
-          {
-            category: 'Furniture',
-            img: require('assets/image/Gallery/8.jpg'),
-            id:10
-          },
-        ],
+        furniture: [],
       }
     },
+    async fetch() {
+      this.furniture = await fetch(
+        'https://api.nuxtjs.dev/beers'
+      ).then(res => res.json())
+
+       this.interior = await fetch(
+         'https://api.nuxtjs.dev/mountains'
+       ).then(res => res.json())
+
+       this.exterior = await fetch(
+         'https://api.nuxtjs.dev/rivers'
+       ).then(res => res.json())
+    },
+
+    
   }
 </script>
 <style  scoped>

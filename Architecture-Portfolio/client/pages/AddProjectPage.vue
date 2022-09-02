@@ -30,13 +30,13 @@
             <input type="text" v-model="project.year" class="form-control" placeholder="Year (e.g. 10.2014 - 10.2018)">
           </div>
           <div class="form-group">
-            <textarea type="text" rows="7" v-model="project.description" class="form-control" placeholder="Description (e.g. )"></textarea>
+            <textarea type="text" rows="7" v-model="project.description" class="form-control" placeholder="Description"></textarea>
           </div>
           <div class="form-group">
             <input type="text" v-model="project.reference" class="form-control">
           </div>
           <div class="button-padding">
-            <button type="submit" class="button-primary w-button">Submit</button>
+            <button @click="refresh()" type="submit" class="button-primary w-button">Submit</button>
           </div>
         </form>
       </div>
@@ -44,6 +44,7 @@
   </main>
 </template>
 <script>
+  import axios from 'axios';
   export default {
     data () {
       return {
@@ -56,7 +57,8 @@
             img: '',
             reference: 'Reference: '
           }
-        ]
+        ],
+        joke: ''
       }
     },
 
@@ -77,8 +79,16 @@
         };
         reader.readAsDataURL(file);
       },
-    }
-  };
+      // Get Request
+      async submitProject() {
+        
+      },
+      refresh() {
+        window.location.reload(true)
+      },
+    },
+  }
+
 </script>
 <style scoped>
   .row {
