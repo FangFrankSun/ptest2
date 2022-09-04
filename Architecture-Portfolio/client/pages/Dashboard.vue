@@ -51,6 +51,13 @@
         'https://api.nuxtjs.dev/mountains'
       ).then(res => res.json())
     },
+    // async mounted() {
+    //   const response = await fetch('https://api.nuxtjs.dev/posts', {
+    //     headers: {"Content-Type": "application/json"},
+    //     credentials: 'include',
+    //   })
+    //   const content = await response.json()
+    // }
   }
 </script>
 <style scoped>

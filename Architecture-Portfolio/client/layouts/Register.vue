@@ -7,14 +7,14 @@
           Already A Member? 
           <NuxtLink class="nuxtlink" to="/Login">Login</NuxtLink>
         </p>
-        <form class="signup-form">
+        <form class="signup-form" @submit.prevent="login">
           <label class="inp">
-          <input type="email" class="input-text" >
+          <input type="email" class="input-text" v-model="email">
           <span class="label">Email</span>
           <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
           </label>
           <label class="inp">
-          <input type="password" class="input-text"  id="password">
+          <input type="password" class="input-text" id="password" v-model="password">
           <span class="label">Password</span>
           <span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
           </label>
@@ -24,6 +24,34 @@
     </div>
   </div>
 </template>
+<script>
+  
+export default {
+  
+  data: () => {
+     return {
+       email: '',
+       password: ''
+     };
+  },
+
+  methods: {
+   async login() {
+     await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password,
+        }),
+      });
+      await this.$router.push("/login");
+    },
+  },
+}
+</script>
 <style scoped>
   * {
   margin: 0;

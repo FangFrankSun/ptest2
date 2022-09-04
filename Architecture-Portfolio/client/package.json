@@ -18,6 +18,7 @@
     "bootstrap": "^4.6.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.19.3",
+    "jsonwebtoken": "^8.5.1",
     "node-sass": "^7.0.1",
     "nuxt": "^2.15.8",
     "nuxt-sass-resources-loader": "^2.0.5",
