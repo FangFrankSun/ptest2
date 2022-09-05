@@ -7,7 +7,7 @@
           Already A Member? 
           <NuxtLink class="nuxtlink" to="/Login">Login</NuxtLink>
         </p>
-        <form class="signup-form" @submit.prevent="login">
+        <form class="signup-form" method="post" @submit.prevent="register">
           <label class="inp">
           <input type="email" class="input-text" v-model="email">
           <span class="label">Email</span>
@@ -36,7 +36,7 @@ export default {
   },
 
   methods: {
-   async login() {
+   async register() {
      await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: {

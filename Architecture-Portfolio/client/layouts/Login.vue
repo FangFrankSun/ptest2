@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-
+import { mapGetters, mapMutations } from 'vuex'
 export default {
   
   data: () => {
@@ -39,7 +39,10 @@ export default {
   },
 
   methods: {
-   async login() {
+   ...mapMutations(["setUser", "setToken"]),
+   
+   async login(e) {
+    e.preventDefault();
      await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -49,6 +52,9 @@ export default {
           password: this.password,
         }),
       });
+      const { user, token } = await response.json();
+      this.setUser(user);
+      this.setToken(token);
       await this.$router.push('/dashboard');
     },
   },

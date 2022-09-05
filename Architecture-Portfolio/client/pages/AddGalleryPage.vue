@@ -24,7 +24,7 @@
               <label><input type="checkbox">{{item.category}}</label>
           </div>
           <div>
-            <button type="submit" class="button-primary w-button">Submit</button>
+            <button type="submit" @submit.prevent="submitPage" class="button-primary w-button">Submit</button>
           </div>
         </form>
       </div>
@@ -37,7 +37,8 @@
       return {
         items: [
           {
-            category: 'Interior Design'
+            category: 'Interior Design',
+            img: ''
           },
           {
             category: 'Exterior Design'
@@ -45,8 +46,50 @@
           {
             category: 'Furniture'
           }
-        ]
+        ],
+        preview: ''
       }
+    },
+    methods: {
+      async submitPage() {
+      const config = {
+        headers: { "content-type": "multipart/form-data" }
+      };
+      let formData = new FormData();
+      for (let data in this.items) {
+        formData.append(data, this.items[data]);
+      }
+      try {
+        let response = await this.$axios.$post("/dashboard/", formData, config)
+        this.$router.push("/dashboard/");
+      } catch (e) {
+        console.log(e);
+      }
+      
+    },
+      onFileChange(e) {
+        let files = e.target.files || e.dataTransfer.files;
+        if (!files.length) {
+          return;
+        }
+        this.items.img = files[0];
+        this.createImage(files[0]);
+      },
+      createImage(file) {
+        let reader = new FileReader();
+        let vm = this;
+        reader.onload = e => {
+          vm.preview = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      },
+      // Get Request
+      // async submitProject() {
+        
+      // },
+      // refresh() {
+      //   window.location.reload(true)
+      // },
     },
   }
   </script>
