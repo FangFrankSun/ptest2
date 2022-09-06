@@ -19,7 +19,7 @@
         <input type="file" name="file" class="chooseFile" @change="onFileChange"></input>
       </div>
       <div class="col-md-4" style="margin-top: 1.5em;">
-        <form @submit.prevent="submitRecipe">
+        <form @submit.prevent="submitProject">
           <div class="form-group">
             <label for>Project Name</label>
             <input type="text" class="form-control" v-model="recipe.name">
@@ -74,21 +74,25 @@
         };
         reader.readAsDataURL(file);
       },
-      async submitRecipe() {
-        const config = {
-          headers: { "content-type": "multipart/form-data" }
-        };
-        let formData = new FormData();
-        for (let data in this.recipe) {
-          formData.append(data, this.recipe[data]);
-        }
-        try {
-          let response = await this.$axios.$post("/recipes/", formData, config);
-          this.$router.push("/recipes/");
-        } catch (e) {
-          console.log(e);
-        }
-      }
+      async submitProject() {
+let editedProject = this.project
+if (editedProject.picture.name.indexOf("http://") != -1){
+delete editedProject["picture"]
+}
+const config = {
+headers: { "content-type": "multipart/form-data" }
+};
+let formData = new FormData();
+for (let data in editedProject) {
+formData.append(data, editedProject[data]);
+}
+try {
+let response = await this.$axios.$patch(/dashboard/${editedProject.id}/, formData, config);
+this.$router.push("/dashboard/");
+} catch (e) {
+console.log(e);
+}
+}
     }
   };
 </script>

@@ -19,7 +19,7 @@
             <div class="action-buttons">
               <div class="action-buttons">
                 <a href="/EditPage" class="btn btn-sm button-color-view">Edit</a>
-                <button class="btn btn-sm button-color-delete">Delete</button>
+                <button class="btn btn-sm button-color-delete" @click="onDelete(project.id)">Delete</button>
               </div>
             </div>
           </div>
@@ -61,10 +61,20 @@
     //   })
     //   const content = await response.json()
     // },
+    
 
     computed: {
     ...mapGetters(["isLoggedIn", 'isAuthenticated', 'loggedInUser'])
-    }
+    },
+    methods: {
+    async onDelete(project_id) {
+      try {
+        await this.$axios.$delete(`/dashboard/${project_id}/`); 
+        let newProject = await this.$axios.$get("/dashboard/"); 
+        this.recipes = newProjects; 
+      } catch (e) {
+        console.log(e);
+      }}}
 
   }
 </script>

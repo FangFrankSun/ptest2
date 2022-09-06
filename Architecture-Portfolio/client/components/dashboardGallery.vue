@@ -18,7 +18,7 @@
               <div class="card-body">
                 <p class="card-text">{{ planet.title }}</p>
                 <div class="action-buttons">
-                  <button class="btn btn-sm button-color-delete">Delete</button>
+                  <button @click="onDelete(images.id)" class="btn btn-sm button-color-delete">Delete</button>
                 </div>
               </div>
             </div>
@@ -39,7 +39,16 @@
       this.planets = await fetch (
         'https://api.nuxtjs.dev/planets'
       ).then(res => res.json())
-    }
+    },
+    methods: {
+    async onDelete(image_id) {
+      try {
+        await this.$axios.$delete(`/dashboard/${image_id}/`); 
+        let newimages = await this.$axios.$get("/dashboard/"); 
+        this.images = newİmages; 
+      } catch (e) {
+        console.log(e);
+      }}}
   }
 </script>
 
