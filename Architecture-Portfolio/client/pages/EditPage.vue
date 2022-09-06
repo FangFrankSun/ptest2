@@ -21,12 +21,19 @@
       <div class="col-md-4" style="margin-top: 1.5em;">
         <form @submit.prevent="submitProject">
           <div class="form-group">
-            <label for>Project Name</label>
-            <input type="text" class="form-control" v-model="recipe.name">
+            <input type="text" v-model="projects.name" class="form-control">
           </div>
           <div class="form-group">
-            <label for>Description</label>
-            <textarea v-model="recipe.ingredients" type="text" rows="8" class="form-control"></textarea>
+            <input type="text" v-model="projects.role" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" v-model="projects.year" class="form-control">
+          </div>
+          <div class="form-group">
+            <textarea type="text" rows="7" v-model="projects.description" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" v-model="projects.reference" class="form-control">
           </div>
           <div style="padding-top:40px;">
             <button type="submit" class="button-primary w-button">Save</button>
@@ -38,24 +45,29 @@
 </template>
 <script>
   export default {
-    head() {
+    data () {
       return {
-        title: "Add Recipe"
-      };
+        projects: [ 
+          {
+            name: '',
+            role:'',
+            year: '',
+            description: '',
+            img: '',
+            reference: 'Reference: '
+          }
+        ],
+        preview: ''
+      }
     },
-    data() {
-      return {
-        recipe: {
-          name: "",
-          picture: "",
-          ingredients: "",
-          difficulty:  "",
-          prep_time: null,
-          prep_guide:  "",
-        },
-        preview: ""
-      };
-    },
+    async asyncData({ $axios, params }) {
+    try {
+      let project = await $axios.$get(`/dashboard/${params.id}`);
+      return { project };
+    } catch (e) {
+      return { project: [] };
+    }
+  },
     methods: {
       onFileChange(e) {
         let files = e.target.files || e.dataTransfer.files;
@@ -75,24 +87,24 @@
         reader.readAsDataURL(file);
       },
       async submitProject() {
-let editedProject = this.project
-if (editedProject.picture.name.indexOf("http://") != -1){
-delete editedProject["picture"]
-}
-const config = {
-headers: { "content-type": "multipart/form-data" }
-};
-let formData = new FormData();
-for (let data in editedProject) {
-formData.append(data, editedProject[data]);
-}
-try {
-let response = await this.$axios.$patch(/dashboard/${editedProject.id}/, formData, config);
-this.$router.push("/dashboard/");
-} catch (e) {
-console.log(e);
-}
-}
+        let editedProject = this.project
+        if (editedProject.picture.name.indexOf("http://") != -1){
+        delete editedProject["picture"]
+        }
+        const config = {
+        headers: { "content-type": "multipart/form-data" }
+        };
+        let formData = new FormData();
+        for (let data in editedProject) {
+        formData.append(data, editedProject[data]);
+        }
+        try {
+        let response = await this.$axios.$patch(`/dashboard/${editedProject.id}/`, formData, config);
+        this.$router.push("/dashboard/");
+        } catch (e) {
+        console.log(e);
+        }
+      }
     }
   };
 </script>
