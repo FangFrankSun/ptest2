@@ -18,7 +18,7 @@
           <span class="label">Password</span>
           <span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
           </label>
-          <button class="btn btn-signup">Create account</button>
+          <button class="btn btn-signup" >Create account</button>
         </form>
       </main>
     </div>
@@ -48,6 +48,7 @@ export default {
         }),
       });
       await this.$router.push("/login");
+      await $store.dispatch('auth/login', { email_address, password })
     },
   },
 }

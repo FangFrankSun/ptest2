@@ -4,7 +4,7 @@
     <div class="row" > 
       <div class="col-12 text-right mb-4">
         <div class="justify-content-between">
-          <h3></h3>
+          <a class="navbar-item"  @click="logout">Logout</a>
           <NuxtLink to="/AddProjectPage"><a class="button-primary w-button">Add Project</a></NuxtLink>
         </div>
       </div>
@@ -37,6 +37,7 @@
   import dashboardGallery from '../components/dashboardGallery.vue'
   import { mapGetters } from "vuex";
   export default {
+    middleware: 'auth',
 
     components: {
       dashboardGallery
@@ -74,7 +75,10 @@
         this.recipes = newProjects; 
       } catch (e) {
         console.log(e);
-      }}}
+      }},
+      async logout() {
+      await this.$auth.logout();
+    },}
 
   }
 </script>

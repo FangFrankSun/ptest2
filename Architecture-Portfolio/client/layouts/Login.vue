@@ -17,7 +17,7 @@
           <span class="label">Password</span>
           <span class="input-icon input-icon-password" data-password><i class="fa-solid fa-eye"></i></span>
           </label>
-          <button class="btn btn-login">Login</button>
+          <button class="btn btn-login" >Login</button>
         </form>
         <p class="text-mute">
           or  
@@ -56,6 +56,7 @@ export default {
       this.setUser(user);
       this.setToken(token);
       await this.$router.push('/dashboard');
+      await $store.dispatch('auth/login', { email_address, password })
     },
   },
 }
