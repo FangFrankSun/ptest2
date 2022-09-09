@@ -82,7 +82,6 @@
     
     methods: {
       async submitPage() {
-        //e.preventDefault();
         const config = {
           headers: { "content-type": "multipart/form-data",
                      "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDk2Njc0ZTg1YWFhOTc0MWJiNzQ1YiIsImlhdCI6MTY2MDExODQ2NCwiZXhwIjoxNjYwNzIzMjY0fQ.bcralUFpNQnlWD3UmMzNnwstm_yml5ex-lpskQ5oCsE"
