@@ -1,20 +1,20 @@
 <template>
   <!-- <div class="container mt-5" v-if="isAuthenticated"> -->
   <div class="container mt-5">
+    <a class="navbar-item"  @click="logout">Logout</a>
     <div class="row" > 
       <div class="col-12 text-right mb-4">
         <div class="justify-content-between">
-          <a class="navbar-item"  @click="logout">Logout</a>
           <NuxtLink to="/AddProjectPage"><a class="button-primary w-button">Add Project</a></NuxtLink>
         </div>
       </div>
-      <div v-if="!mountains.length">Nothing is loading, try again.</div>
+      <div v-if="!projects.length">Nothing is loading, try again.</div>
       <div style="display: flex; flex-wrap: wrap; gap: 2em; justify-content: center;">
-        <div v-for="mountain of mountains" class="card recipe-card box-shadow width28">
-          <img :src="mountain.image" class="card-img-top" />
+        <div v-for="project of projects" class="card recipe-card box-shadow width28">
+          <img :src="project.image" class="card-img-top" />
           <div class="card-body">
-            <h5 class="card-title">{{ mountain.title }}</h5>
-            <h5 class="card-text">{{ mountain.description }}</h5>
+            <h5 class="card-title">{{ project.title }}</h5>
+            <h5 class="card-text">{{ project.description }}</h5>
            
             <div class="action-buttons">
               <div class="action-buttons">
@@ -37,7 +37,7 @@
   import dashboardGallery from '../components/dashboardGallery.vue'
   import { mapGetters } from "vuex";
   export default {
-    middleware: 'auth',
+    //middleware: 'auth',
 
     components: {
       dashboardGallery
@@ -45,14 +45,13 @@
 
     data() {
       return {
-        mountains: [],
+        projects: [],
       }
     },
 
     async fetch() {
-      this.mountains = await fetch(
-        'https://api.nuxtjs.dev/mountains'
-      ).then(res => res.json())
+      let url = 'https://thesis-project-beta.herokuapp.com/api/v1/project'
+      this.projects = await fetch(url).then(res => res.json())
     },
 
     // async mounted() {

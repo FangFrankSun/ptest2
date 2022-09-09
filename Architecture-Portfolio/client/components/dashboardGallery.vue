@@ -6,17 +6,17 @@
             <NuxtLink to="/AddGalleryPage"><a class="button-primary w-button">Add Gallery</a></NuxtLink>
           </div>
         </div>
-        <div v-if="!planets.length">Nothing is loading, try again.</div>
+        <div v-if="!pictures.length">Nothing is loading, try again.</div>
         <div style="
           width: 70%;
           display: flex;
           flex-wrap: wrap;">
-          <div v-for="planet of planets"
+          <div v-for="picture of pictures"
             class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card recipe-card box-shadow">
-              <img :src="planet.image" class="card-img-top"/>
+              <img :src="picture.image" class="card-img-top"/>
               <div class="card-body">
-                <p class="card-text">{{ planet.title }}</p>
+                <p class="card-text">{{ picture.title }}</p>
                 <div class="action-buttons">
                   <button @click="onDelete(images.id)" class="btn btn-sm button-color-delete">Delete</button>
                 </div>
@@ -32,20 +32,26 @@
   export default {
     data() {
       return {
-        planets: []
+        pictures: [
+          // there was no object
+          {
+            imageURL: 'yesyes',
+            type: 'furniture'
+          }
+        ]
       }
     },
     async fetch() {
-      this.planets = await fetch (
-        'https://api.nuxtjs.dev/planets'
+      this.pictures = await fetch (
+        'https://thesis-project-beta.herokuapp.com/api/v1/gallery'
       ).then(res => res.json())
     },
     methods: {
     async onDelete(image_id) {
       try {
         await this.$axios.$delete(`/dashboard/${image_id}/`); 
-        let newimages = await this.$axios.$get("/dashboard/"); 
-        this.images = newİmages; 
+        let newImages = await this.$axios.$get("/dashboard/"); 
+        this.images = newImages; 
       } catch (e) {
         console.log(e);
       }}}

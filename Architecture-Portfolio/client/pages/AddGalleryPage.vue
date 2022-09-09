@@ -21,7 +21,7 @@
       <div class="col-md-4">
         <form >
           <div class="checkbox" v-for="item in items" :key="item.id">
-              <label><input type="checkbox">{{item.category}}</label>
+              <label><input type="checkbox">{{item.type}}</label>
           </div>
           <div>
             <button type="submit" @submit.prevent="submitPage" class="button-primary w-button">Submit</button>
@@ -37,21 +37,24 @@
       return {
         items: [
           {
-            category: 'Interior Design',
-            img: ''
+            type: 'Interior Design',
+            imageUrl: ''
           },
           {
-            category: 'Exterior Design'
+            type: 'Exterior Design',
+            imageUrl: ''
           },
           {
-            category: 'Furniture'
+            type: 'Furniture',
+            imageUrl: ''
           }
         ],
         preview: ''
       }
     },
     methods: {
-      async submitPage() {
+      async submitPage(e) {
+      e.preventDefault();
       const config = {
         headers: { "content-type": "multipart/form-data" }
       };
@@ -65,6 +68,9 @@
       } catch (e) {
         console.log(e);
       }
+
+      // axios.post('https://thesis-project-beta.herokuapp.com/api/v1/project', formData)
+      // .then((response) => {}, (response => {}));
       
     },
       onFileChange(e) {
