@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="container mt-5" v-if="isAuthenticated"> -->
   <div class="container mt-5">
-    <a class="navbar-item"  @click="logout">Logout</a>
+    <button class="button-color-delete w-button"  @click="logout">Logout</button>
     <div class="row" > 
       <div class="col-12 text-right mb-4">
         <div class="justify-content-between">
@@ -10,16 +10,17 @@
       </div>
       <div v-if="!projects.length">Nothing is loading, try again.</div>
       <div style="display: flex; flex-wrap: wrap; gap: 2em; justify-content: center;">
-        <div v-for="project of projects" class="card recipe-card box-shadow width28">
-          <img :src="project.image" class="card-img-top" />
+        <div v-for="project of projects" class="card recipe-card box-shadow width28" :key="project">
+          <img :src="project.imageUrl" class="card-img-top" />
           <div class="card-body">
             <h5 class="card-title">{{ project.title }}</h5>
             <h5 class="card-text">{{ project.description }}</h5>
            
             <div class="action-buttons">
               <div class="action-buttons">
-                <a href="/EditPage" class="btn btn-sm button-color-view">Edit</a>
-                <button class="btn btn-sm button-color-delete" @click="onDelete(project.id)">Delete</button>
+        
+               <NuxtLink :to="{ name: 'EditPage', params: { projectId: project._id }}"><a class="btn btn-sm button-color-view">Edit </a></NuxtLink>
+                <button class="btn btn-sm button-color-delete" @click="onDelete(project._id)">Delete</button>
               </div>
             </div>
           </div>
@@ -27,17 +28,13 @@
       </div>
       <dashboardGallery />
     </div>
-    <!-- <template v-else>
-       <nuxt-link class="navbar-item" to="/Register">Register</nuxt-link>
-       <nuxt-link class="navbar-item" to="/Login">Log In</nuxt-link>
-     </template> -->
   </div>
 </template>
 <script>
+  import axios from 'axios'
   import dashboardGallery from '../components/dashboardGallery.vue'
   import { mapGetters } from "vuex";
   export default {
-    //middleware: 'auth',
 
     components: {
       dashboardGallery
@@ -46,37 +43,45 @@
     data() {
       return {
         projects: [],
+        token:''
       }
     },
 
-    async fetch() {
+    created() {
+      if (typeof window !== 'undefined') {
+    this.token = localStorage.getItem('token');
+}
+     
+      if(this.token == null){
+        this.$router.push('/login')
+      }
       let url = 'https://thesis-project-beta.herokuapp.com/api/v1/project'
-      this.projects = await fetch(url).then(res => res.json())
+      axios.get(url).then((res) =>this.projects = res.data.projects )
     },
 
-    // async mounted() {
-    //   const response = await fetch('https://api.nuxtjs.dev/posts', {
-    //     headers: {"Content-Type": "application/json"},
-    //     credentials: 'include',
-    //   })
-    //   const content = await response.json()
-    // },
-    
+  
+  
 
     computed: {
     ...mapGetters(["isLoggedIn", 'isAuthenticated', 'loggedInUser'])
     },
     methods: {
-    async onDelete(project_id) {
+    async onDelete(projectId) {
       try {
-        await this.$axios.$delete(`/dashboard/${project_id}/`); 
-        let newProject = await this.$axios.$get("/dashboard/"); 
-        this.recipes = newProjects; 
+        const result = await axios.delete(`https://thesis-project-beta.herokuapp.com/api/v1/project/hardDelete/${projectId}/`,{
+          headers:{
+            'auth-token':localStorage.getItem('token')
+          }
+        }); 
+          if(result.status == 200){
+            location.reload()
+          }
       } catch (e) {
         console.log(e);
       }},
       async logout() {
-      await this.$auth.logout();
+      localStorage.removeItem('token')
+      location.reload()
     },}
 
   }

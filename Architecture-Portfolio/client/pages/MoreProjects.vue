@@ -8,7 +8,7 @@
                class="image portfolio-underline"/>
         </div>
       </div>
-      <div class="home-portfolio-slider-main-wrapper">
+      <div v-if="projects.length > 0" class="home-portfolio-slider-main-wrapper">
         <div>
           <div class="home-portfolio-slider-mask w-slider-mask flex-direction-column"
                id="w-slider-mask-0">
@@ -21,15 +21,15 @@
                   <div role="listitem" class="w-dyn-item more-projects-width">
                     <a class="card home-portfolio-card w-inline-block flex-direction-row">
                       <div class="image-wrapper portfolio-card">
-                        <h3 class="title home-portfolio-card">{{project.title}}</h3>
+                        <h3 class="title home-portfolio-card">{{project.name}}</h3>
                         <div class="wg-box-content">
                           <a>
                             <div class="wg-box-content-overlay"></div>
-                            <img :src="project.image" alt="Todo List Mobile App Redesign"
+                            <img  :src="project.imageUrl" 
                               sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
                               class="border-radius image"/>
                             <div class="wg-box-content-details wg-box-fadeIn-bottom">
-                              <h3 class="wg-box-content-title">{{project.role}}<br>{{project.role2}}</h3>
+                              <h3 class="wg-box-content-title">{{project.role}}</h3>
                               <p class="wg-box-content-text">{{project.year}}</p>
                               <p class="wg-box-content-text">{{project.description}}</p>
                               <p class="wg-box-content-text">{{project.reference}}</p>
@@ -49,66 +49,27 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
-        projects: [
-          {
-            name: 'Ağaoğlu Maslak 1453',
-            role:'Project Manager - AB Section',
-            role2:'Head of Construction Group 1',
-            year: '10.2014 - 10.2018',
-            description: '870 000m2, 3880 Residences, 1000 Offices, University, Shopping Mall, Hotel, 10 Cinema Halls, 3 Congress Halls, 32 Blocks between 11 and 51 variable floors',
-            img: require('assets/image/Maslak-1453.jpg'),
-            reference: 'Reference: Abdullah Murad ACAR - General Coordinator'
-          },
-          {
-            name: 'Ağaoğlu My Home Ayazağa',
-            role:'Deputy Project Manager',
-            role2:'Decoration Works Manager',
-            year: '05.2013 - 10.2014',
-            description: '260000m2, 800 Residences,  100 Offices, Markets,  3 Blocks with 41 floors',
-            img: require('assets/image/MyHomeAyazağa.jpg'),
-            reference: 'Reference: Adem Yıldırım - Project Manager'
-          },
-          {
-            name: 'Dünya Göz Hospital',
-            role:'Project Manager',
-            year: '02.2011 - 06.2011',
-            description: '2500m2 Construciton Zone',
-            img: require('assets/image/dunyagoz-pendik.jpg'),
-            reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
-          },
-          {
-            name: 'Vodafone Digital Operations Center',
-            role:'Project Manager',
-            year: '10.2009 - 02.2011',
-            description: '19000m2 Construciton Zone',
-            img: require('assets/image/Vodafone.png'),
-            reference: 'Reference: Enver Küçükalı (Serpent Architecture)'
-          },
-          {
-            name: 'WOW Congress Center Istanbul',
-            role:'Site Chief',
-            year: '06.2011 - 04.2012',
-            description: '15000m2 Construciton Zone',
-            img: require('assets/image/wow.webp'),
-            reference: 'Reference: Muzaffer Küpe'
-          }
-        ],
+        projects: [],
       }
     },
-    async fetch() {
-      this.projects = await fetch(
-        'https://api.nuxtjs.dev/rivers'
-      ).then(res => res.json())
+    methods:{
+ 
     },
+     created (){
+      axios.get('https://thesis-project-beta.herokuapp.com/api/v1/project').then((res) =>this.projects = res.data.projects )
+    }
+    
+   
   }
 </script>
 <style>
-  .top-content.portfolio-top-content {
+  /* .top-content.portfolio-top-content {
      margin-bottom: 0px!important; 
-}
+} */
   .main-title{
   color: #2d2d2d;
   text-align: center;

@@ -17,10 +17,10 @@
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
           src="~/assets/image/placeholder1.png"
           >
-        <input type="file" name="file" class="chooseFile" @change="onFileChange"></input>
+        <input type="file" name="file" accept="image/*" class="chooseFile" @change="uploadImage"></input>
       </div>
       <div class="col-md-4" style="margin-top: 2.3em;" v-for="project in projects" :key="project.id">
-        <form id="form" @submit.prevent="submitPage">
+        <div>
           <div class="form-group">
             <input type="text" name="name" id="name" v-model="project.name" class="form-control" placeholder="Project Name (e.g. Ağaoğlu Maslak 1453)">
           </div>
@@ -34,12 +34,12 @@
             <textarea type="text" name="description" id="description" rows="7" v-model="project.description" class="form-control" placeholder="Description"></textarea>
           </div>
           <div class="form-group">
-            <input type="text" name="reference" id="reference" v-model="project.reference" class="form-control">
+            <input type="text" name="reference" id="reference" placeholder="Reference" v-model="project.reference" class="form-control">
           </div>
           <div class="button-padding">
-            <button type="submit" class="button-primary w-button">Submit</button>
+            <button  class="button-primary w-button" @click="createProject">Submit</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </main>
@@ -71,8 +71,7 @@
             role:'',
             year: '',
             description: '',
-            //img: '',
-            reference: 'Reference: ',
+            reference: '',
             imageUrl: ''
           }
         ],
@@ -81,34 +80,38 @@
     },
     
     methods: {
-      async submitPage() {
+      async createProject() {
         const config = {
-          headers: { "content-type": "multipart/form-data",
-                     "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDk2Njc0ZTg1YWFhOTc0MWJiNzQ1YiIsImlhdCI6MTY2MDExODQ2NCwiZXhwIjoxNjYwNzIzMjY0fQ.bcralUFpNQnlWD3UmMzNnwstm_yml5ex-lpskQ5oCsE"
+          headers: { 
+                     "auth-token": localStorage.getItem('token')
                    },
         };
-        const formData = new FormData(form);
-        console.log([...formData]);
         try {
-          //let response = await this.axios.post("/dashboard/", formData, config)
-          const response = await axios.post('https://thesis-project-beta.herokuapp.com/api/v1/project', formData, config)
+          const response = await axios.post('https://thesis-project-beta.herokuapp.com/api/v1/project', this.projects[0], config)
+          if(response.status == 200){
+          this.$router.push("/dashboard/");  
+          }
           
-          // const jsonResponse = await response.json()
-          // this.$router.push("/dashboard/");
-          console.log(response);
         } catch (e) {
           console.log(e);
         }
     },
-      onFileChange(e) {
-        let files = e.target.files || e.dataTransfer.files;
-        if (!files.length) {
-          return;
-        }
-        this.projects.imageUrl = files[0];
-        this.createImage(files[0]);
-      },
-      createImage(file) {
+      async uploadImage(event) {
+      const URL = "https://thesis-project-beta.herokuapp.com/api/v1/upload";
+      const data = new FormData();
+      data.append("file", event.target.files[0]);
+      const config = {
+        headers: {
+         
+          'auth-token':localStorage.getItem('token')
+        },
+      };
+
+      const result  = await axios.post(URL, data, config);
+      this.projects[0].imageUrl = result.data.images[0]
+      this.createImage(event.target.files[0]);
+    },
+       createImage(file) {
         let reader = new FileReader();
         let vm = this;
         reader.onload = e => {
@@ -116,15 +119,6 @@
         };
         reader.readAsDataURL(file);
       },
-      // Get Request
-      // async submitProject() {
-        
-      // },
-      // refresh() {
-      //   setTimeout(function(){
-      //   window.location.reload();
-      //   }, 5000);
-      //  },
       
     },
   }

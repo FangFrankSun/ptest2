@@ -6,10 +6,11 @@ export const AUTH_MUTATIONS = {
 }
 
 export const state = () => ({
-  access_token: null, // JWT access token
+  token: null, // JWT access token
   refresh_token: null, // JWT refresh token
   id: null, // user id
   email_address: null, // user email address
+  isLoggedIn:false
 })
 
 export const mutations = {
@@ -20,21 +21,15 @@ export const mutations = {
   },
 
   // store new or updated token fields in the state
-  [AUTH_MUTATIONS.SET_PAYLOAD] (state, { access_token, refresh_token = null }) {
-    state.access_token = access_token
-
-    // refresh token is optional, only set it if present
-    if (refresh_token) {
-      state.refresh_token = refresh_token
-    }
+  [AUTH_MUTATIONS.SET_PAYLOAD] (state, { token, refresh_token = null }) {
+    state.token = token
   },
 
-  // clear our the state, essentially logging out the user
   [AUTH_MUTATIONS.LOGOUT] (state) {
     state.id = null
     state.email_address = null
-    state.access_token = null
-    state.refresh_token = null
+    state.token = null
+ 
   },
 }
 
@@ -51,31 +46,6 @@ export const actions = {
     commit(AUTH_MUTATIONS.SET_PAYLOAD, payload)
   },
 
-  async register ({ commit }, { email_addr, password }) {
-    // make an API call to register the user
-    const { data: { data: { user, payload } } } = await this.$axios.post(
-      '/api/auth/register', 
-      { email_address, password }
-    )
-    
-    // commit the user and tokens to the state
-    commit(AUTH_MUTATIONS.SET_USER, user)
-    commit(AUTH_MUTATIONS.SET_PAYLOAD, payload)
-  },
-
-  // given the current refresh token, refresh the user's access token to prevent expiry
-  async refresh ({ commit, state }) {
-    const { refresh_token } = state
-
-    // make an API call using the refresh token to generate a new access token
-    const { data: { data: { payload } } } = await this.$axios.post(
-      '/api/auth/refresh', 
-      { refresh_token }
-    )
-
-    commit(AUTH_MUTATIONS.SET_PAYLOAD, payload)
-  },
-
   // logout the user
   logout ({ commit, state }) {
     commit(AUTH_MUTATIONS.LOGOUT)
@@ -84,7 +54,7 @@ export const actions = {
 
 export const getters = {
   // determine if the user is authenticated based on the presence of the access token
-  isAuthenticated: (state) => {
-    return state.access_token && state.access_token !== ''
+  isLoggedIn: (state) => {
+    return state.token
   },
 }

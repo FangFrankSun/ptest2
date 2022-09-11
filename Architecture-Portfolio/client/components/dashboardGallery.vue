@@ -6,19 +6,20 @@
             <NuxtLink to="/AddGalleryPage"><a class="button-primary w-button">Add Gallery</a></NuxtLink>
           </div>
         </div>
-        <div v-if="!pictures.length">Nothing is loading, try again.</div>
+        <div v-if="!images.length">Nothing is loading, try again.</div>
         <div style="
           width: 70%;
           display: flex;
           flex-wrap: wrap;">
-          <div v-for="picture of pictures"
+          <div v-for="image of images" :key="image"
             class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card recipe-card box-shadow">
-              <img :src="picture.image" class="card-img-top"/>
+              
+              <img :src="image.imageUrl[0]" class="card-img-top"/>
               <div class="card-body">
-                <p class="card-text">{{ picture.title }}</p>
+                <p class="card-text">{{ image.type }}</p>
                 <div class="action-buttons">
-                  <button @click="onDelete(images.id)" class="btn btn-sm button-color-delete">Delete</button>
+                  <button @click="onDelete(image._id)" class="btn btn-sm button-color-delete">Delete</button>
                 </div>
               </div>
             </div>
@@ -29,29 +30,33 @@
 </template>
 
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
-        pictures: [
-          // there was no object
-          {
-            imageURL: 'yesyes',
-            type: 'furniture'
-          }
-        ]
+        images:[]
       }
     },
-    async fetch() {
-      this.pictures = await fetch (
+     created() {
+      this.images = axios.get(
         'https://thesis-project-beta.herokuapp.com/api/v1/gallery'
-      ).then(res => res.json())
+      ).then(res => {
+        console.log(res.data);
+        this.images = res.data.images
+      })
     },
     methods: {
-    async onDelete(image_id) {
+    async onDelete(imageId) {
       try {
-        await this.$axios.$delete(`/dashboard/${image_id}/`); 
-        let newImages = await this.$axios.$get("/dashboard/"); 
-        this.images = newImages; 
+        axios.delete(`https://thesis-project-beta.herokuapp.com/api/v1/gallery/hardDelete/${imageId}`,{
+          headers:{
+            'auth-token':localStorage.getItem('token')
+          }
+        }).then((res) => {
+          if(res.data.success){
+            location.reload()
+          }
+        })
       } catch (e) {
         console.log(e);
       }}}

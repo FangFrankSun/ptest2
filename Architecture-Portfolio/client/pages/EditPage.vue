@@ -4,81 +4,100 @@
       <div class="col-md-6 mb-4">
         <label for>Project Picture</label>
         <img
-          v-if="preview"
+          v-if="project.imageUrl"
           class="img-fluid"
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
-          :src="preview"
+          :src="project.imageUrl"
           alt
           >
-        <img
-          v-else
-          class="img-fluid"
-          style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
-          src="~/assets/image/placeholder1.png"
-          >
-        <input type="file" name="file" class="chooseFile" @change="onFileChange"></input>
+      
+               <input type="file" name="file" accept="image/*" class="chooseFile" @change="uploadImage"></input>
+
       </div>
       <div class="col-md-4" style="margin-top: 1.5em;">
-        <form @submit.prevent="submitProject">
+        <div>
           <div class="form-group">
-            <input type="text" v-model="projects.name" class="form-control">
+            <input type="text" v-model="project.name" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" v-model="projects.role" class="form-control">
+            <input type="text" v-model="project.role" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" v-model="projects.year" class="form-control">
+            <input type="text" v-model="project.year" class="form-control">
           </div>
           <div class="form-group">
-            <textarea type="text" rows="7" v-model="projects.description" class="form-control"></textarea>
+            <textarea type="text" rows="7" v-model="project.description" class="form-control"></textarea>
           </div>
           <div class="form-group">
-            <input type="text" v-model="projects.reference" class="form-control">
+            <input type="text" v-model="project.reference" class="form-control">
           </div>
           <div style="padding-top:40px;">
-            <button type="submit" class="button-primary w-button">Save</button>
+            <button type="submit" @click="updateProject" class="button-primary w-button">Save</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </main>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data () {
       return {
-        projects: [ 
+        project: 
           {
             name: '',
             role:'',
             year: '',
             description: '',
-            img: '',
+            imageUrl: '',
             reference: 'Reference: '
-          }
-        ],
+          },
+        
         preview: ''
       }
     },
-    async asyncData({ $axios, params }) {
-    try {
-      let project = await $axios.$get(`/dashboard/${params.id}`);
-      return { project };
-    } catch (e) {
-      return { project: [] };
-    }
-  },
+   created(){
+   try {
+     const url = `https://thesis-project-beta.herokuapp.com/api/v1/project/${this.$route.params.projectId}`
+    axios.get(url).then((res) => {
+      console.log(res.data);
+      this.project = res.data.project
+    })
+    console.log("selam",this.$route.params);
+   } catch (error) {
+    console.log(error,"sadeasdas");
+   }
+   },
     methods: {
-      onFileChange(e) {
-        let files = e.target.files || e.dataTransfer.files;
-        if (!files.length) {
-          return;
-        }
-        this.recipe.picture = files[0];
-        this.createImage(files[0]);
+      async updateProject(){
+         const url = `https://thesis-project-beta.herokuapp.com/api/v1/project/${this.$route.params.projectId}`
+         axios.patch(url,this.project,{
+          headers:{
+            'auth-token':localStorage.getItem('token')
+          }
+         }).then((res) => {
+         if(res.data.success){
+          this.$router.push('/dashboard')
+         }
+         })
       },
-      createImage(file) {
-        // let image = new Image();
+       async uploadImage(event) {
+      const URL = "https://thesis-project-beta.herokuapp.com/api/v1/upload";
+      const data = new FormData();
+      data.append("file", event.target.files[0]);
+      const config = {
+        headers: {
+         
+          'auth-token':localStorage.getItem('token')
+        },
+      };
+
+      const result  = await axios.post(URL, data, config);
+      this.project.imageUrl = result.data.images[0]
+      this.createImage(event.target.files[0]);
+    },
+       createImage(file) {
         let reader = new FileReader();
         let vm = this;
         reader.onload = e => {
@@ -86,25 +105,7 @@
         };
         reader.readAsDataURL(file);
       },
-      async submitProject() {
-        let editedProject = this.project
-        if (editedProject.picture.name.indexOf("http://") != -1){
-        delete editedProject["picture"]
-        }
-        const config = {
-        headers: { "content-type": "multipart/form-data" }
-        };
-        let formData = new FormData();
-        for (let data in editedProject) {
-        formData.append(data, editedProject[data]);
-        }
-        try {
-        let response = await this.$axios.$patch(`/dashboard/${editedProject.id}/`, formData, config);
-        this.$router.push("/dashboard/");
-        } catch (e) {
-        console.log(e);
-        }
-      }
+     
     }
   };
 </script>

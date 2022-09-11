@@ -17,13 +17,13 @@
         </div>
       </div>
       <div
+     
         data-w-id="69f75c50-8619-7ebb-912d-114e45cb4c1a"
         class="home-portfolio-slider-main-wrapper reveal"
         >
         <div
-          data-delay="4000"
+          data-delay="1000"
           data-animation="slide"
-          class="home-porfolio-slider w-slider"
           data-autoplay="false"
           data-easing="ease"
           data-hide-arrows="false"
@@ -40,21 +40,23 @@
             id="w-slider-mask-0"
             >
             <div
+              v-for="(project,index) in projects" :key="index"
               class="home-portfolio-slide w-slide"
               aria-label="1 of 12"
               role="group"
               style="transform: translateX(0px); opacity: 1"
               >
               <div class="w-dyn-list">
+               
                 <div role="list" class="w-dyn-items">
                   <div role="listitem" class="w-dyn-item">
                     <a
                       class="card home-portfolio-card w-inline-block">
-                      <div class="image-wrapper portfolio-card2">
+                      <div :class="'image-wrapper portfolio-card'+index">
                         <NuxtLink to="/MoreProjects">
                           <img
-                            src="~/assets/image/Maslak-1453.jpg"
-                            alt="Todo List Mobile App Redesign"
+                            :src="project.imageUrl"
+                            alt="Todo List Mobile Appsdasd Redesign"
                             sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
                             class="image portfolio-card"
                             />
@@ -64,7 +66,7 @@
                         class="split-content portfolio-card-bottom-content"
                         >
                         <h3 class="title home-portfolio-card">
-                          <NuxtLink to="/MoreProjects">Ağaoğlu Maslak 1453</NuxtLink>
+                          <NuxtLink to="/MoreProjects">Project Name:{{project.name}}</NuxtLink>
                         </h3>
                         <p class="paragraph home-portfolio-card">
                         </p>
@@ -85,117 +87,7 @@
                 </div>
               </div>
             </div>
-            <div
-              class="home-portfolio-slide w-slide"
-              aria-label="2 of 12"
-              role="group"
-              style="transform: translateX(0px); opacity: 1"
-              >
-              <div class="w-dyn-list">
-                <div role="list" class="w-dyn-items">
-                  <div role="listitem" class="w-dyn-item">
-                    <a
-                      href="
-                      "
-                      class="card home-portfolio-card w-inline-block"
-                      >
-                      <div class="image-wrapper portfolio-card2">
-                        <NuxtLink to="/MoreProjects">
-                          <img
-                            src="~/assets/image/MyHomeAyazağa.jpg"
-                            alt="Todo List Mobile App Redesign"
-                            sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                            class="image portfolio-card"
-                            />
-                        </NuxtLink>
-                      </div>
-                      <div
-                        class="split-content portfolio-card-bottom-content"
-                        >
-                        <h3 class="title home-portfolio-card">
-                          <div>
-                    <a><NuxtLink to="/MoreProjects">Ağaoğlu My Home Ayazağa</NuxtLink></a>
-                    </div>
-                    </h3>
-                    <p class="paragraph home-portfolio-card">
-                    </p>
-                    <div class="hc-flex read-case-study">
-                    <div><NuxtLink to="/MoreProjects">Take a look</NuxtLink></div>
-                    <img
-                      src="https://assets.website-files.com/61129bb2ecedf803564c68ec/61155e76b0500d608ffb874e_arrow-personal-x-template.svg"
-                      loading="eager"
-                      alt="Arrow Icon - You X Webflow Template"
-                      class="image projects-link-arrow"
-                      />
-                    </div>
-                    </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="home-portfolio-slide w-slide"
-              aria-label="3 of 12"
-              role="group"
-              aria-hidden="true"
-              style="transform: translateX(0px); opacity: 1"
-              >
-              <div class="w-dyn-list" aria-hidden="true">
-                <div role="list" class="w-dyn-items" aria-hidden="true">
-                  <div role="listitem" class="w-dyn-item" aria-hidden="true">
-                    <a
-                      href=""
-                      class="card home-portfolio-card w-inline-block"
-                      tabindex="-1"
-                      aria-hidden="true"
-                      >
-                      <div
-                        class="image-wrapper portfolio-card2"
-                        aria-hidden="true"
-                        >
-                        <NuxtLink to="/MoreProjects">
-                          <img
-                            src="~/assets/image/wow.webp"
-                            alt="Task Manager Web App Design"
-                            sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
-                            class="image portfolio-card"
-                            aria-hidden="true"
-                            />
-                        </NuxtLink>
-                      </div>
-                      <div
-                        class="split-content portfolio-card-bottom-content"
-                        aria-hidden="true"
-                        >
-                        <h3
-                          class="title home-portfolio-card"
-                          aria-hidden="true"
-                          >
-                          <div>
-                    <a><NuxtLink to="/MoreProjects">Wow Congress Center Istanbul</NuxtLink></a>
-                    </div>
-                    </h3>
-                    <p class="paragraph home-portfolio-card" aria-hidden="true">
-                    </p>
-                    <div
-                      class="hc-flex read-case-study"
-                      aria-hidden="true"
-                      >
-                    <div><NuxtLink to="/MoreProjects">Take a look</NuxtLink></div>
-                    <img
-                      src="https://assets.website-files.com/61129bb2ecedf803564c68ec/61155e76b0500d608ffb874e_arrow-personal-x-template.svg"
-                      loading="eager"
-                      alt="Arrow Icon - You X Webflow Template"
-                      class="image projects-link-arrow"
-                      aria-hidden="true"
-                      />
-                    </div></div
-                      ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+         
             <div
               class="home-portfolio-slide w-slide more-button2"
               aria-label="4 of 12"
@@ -278,9 +170,14 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
   import NuxtLogo from '~/components/NuxtLogo.vue'
     export default {
-      data: () => ({}),
+      data(){
+        return {
+          projects:[]
+        }
+      },
       mounted() {
           const recaptchaScript = document.createElement("script");
           recaptchaScript.setAttribute("src", "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=61129bb2ecedf803564c68ec");
@@ -289,7 +186,16 @@
           deneme.setAttribute("src", "https://assets.website-files.com/61129bb2ecedf803564c68ec/js/webflow.19742290c.js");
           document.head.appendChild(deneme);
       },
-      methods: {},
+      methods: {
+        
+      },
+       created (){
+      axios.get('https://thesis-project-beta.herokuapp.com/api/v1/project').then((res) =>{
+        this.projects = res.data.projects 
+        console.log(this.projects);
+      })
+     
+    },
       components: { NuxtLogo }
   }
 </script>

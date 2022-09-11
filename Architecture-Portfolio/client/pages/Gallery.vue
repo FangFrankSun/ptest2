@@ -9,35 +9,37 @@
     <div class="gallery">
 
       <!-- EXTERIOR -->
-      <a class="card exterior" v-for="photo in exterior"
-        :key="photo.id">
+ 
+      <a class="card exterior" v-for="image in exterior"
+        :key="image.id">
+        
         <div class="content">
-          <span class="category">{{photo.title}}</span>
+          <span class="category">{{image.type}}</span>
         </div>
         <div class="image">
-          <img :src="photo.image"/>
+          <img :src="image.imageUrl[0]"/>
         </div>
       </a>
 
       <!-- INTERIOR -->
-      <a class="card interior" v-for="photo in interior"
-        :key="photo.id">
+      <a class="card interior" v-for="image in interior"
+        :key="image.id">
         <div class="content">
-          <span class="category">{{photo.title}}</span>
+          <span class="category">{{image.type}}</span>
         </div>
         <div class="image">
-          <img :src="photo.image"/>
+          <img :src="image.imageUrl[0]"/>
         </div>
       </a>
 
       <!-- FURNITURE -->
-      <a class="card furniture" v-for="photo in furniture"
-        :key="photo.id">
+      <a class="card furniture" v-for="image in furniture"
+        :key="image.id">
         <div class="content">
-          <span class="category">{{photo.name}}</span>
+          <span class="category">{{image.type}}</span>
         </div>
         <div class="image">
-          <img :src="photo.image_url"/>
+          <img :src="image.imageUrl[0]"/>
         </div>
       </a>
       
@@ -45,6 +47,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
@@ -55,18 +58,26 @@
         furniture: [],
       }
     },
-    async fetch() {
-      this.furniture = await fetch(
-        'https://api.nuxtjs.dev/beers'
-      ).then(res => res.json())
+    created() {
+      axios.get('https://thesis-project-beta.herokuapp.com/api/v1/gallery').then((res) => {
+        let images = res.data.images;
+        console.log(images);
+        images.map((image) => {
+          console.log(image);
+          if(image.type.toLowerCase() == 'furniture'){
+            this.furniture.push(image)
+          }
+          if(image.type.toLowerCase() == 'interior'){
+            this.interior.push(image)
+          }
+          if(image.type.toLowerCase() == 'exterior'){
+              this.exterior.push(image)
 
-       this.interior = await fetch(
-         'https://api.nuxtjs.dev/mountains'
-       ).then(res => res.json())
+          }
 
-       this.exterior = await fetch(
-         'https://api.nuxtjs.dev/rivers'
-       ).then(res => res.json())
+        })
+      
+      })
     },
 
     

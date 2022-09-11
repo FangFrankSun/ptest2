@@ -2,7 +2,7 @@
   <main class="container my-5">
     <div class="row">
       <div class="col-md-6 mb-4">
-        <label for>Gallery Picture</label>
+        <label>Gallery Picture</label>
         <img
           v-if="preview"
           class="img-fluid"
@@ -16,86 +16,79 @@
           style="width: 400px; border-radius: 10px; box-shadow: 0 1rem 1rem rgba(0,0,0,.7);"
           src="~/assets/image/placeholder1.png"
           >
-        <input class="chooseFile" type="file" name="file" @change="onFileChange"></input>
+        <input type="file" name="file" accept="image/*" class="chooseFile" @change="uploadImage"></input>
       </div>
       <div class="col-md-4">
-        <form >
-          <div class="checkbox" v-for="item in items" :key="item.id">
-              <label><input type="checkbox">{{item.type}}</label>
+        <label>Select Category</label>
+          <div>
+                <select v-model="galleryImage.type" placeholder="Select Image Type">
+                <option value="interior" selected>Interior</option>
+                <option value="furniture">Furniture</option>
+                <option value="exterior">Exterior</option>
+           </select>
           </div>
           <div>
-            <button type="submit" @submit.prevent="submitPage" class="button-primary w-button">Submit</button>
+            <button type="submit" @click="createGalleryImage" class="button-primary w-button">Submit</button>
           </div>
-        </form>
+      
       </div>
     </div>
   </main>
 </template>
 <script>
+import axios from 'axios'
   export default {
     data() {
       return {
-        items: [
-          {
-            type: 'Interior Design',
-            imageUrl: ''
-          },
-          {
-            type: 'Exterior Design',
-            imageUrl: ''
-          },
-          {
-            type: 'Furniture',
-            imageUrl: ''
-          }
-        ],
-        preview: ''
+        items:['interior','furniture','exterior'],
+        type:'',
+        galleryImage: {
+          type:'',
+          imageUrl:''
+        },
+        preview: '',
       }
     },
     methods: {
-      async submitPage(e) {
-      e.preventDefault();
-      const config = {
-        headers: { "content-type": "multipart/form-data" }
-      };
-      let formData = new FormData();
-      for (let data in this.items) {
-        formData.append(data, this.items[data]);
-      }
-      try {
-        let response = await this.$axios.$post("/dashboard/", formData, config)
-        this.$router.push("/dashboard/");
-      } catch (e) {
-        console.log(e);
-      }
-
-      // axios.post('https://thesis-project-beta.herokuapp.com/api/v1/project', formData)
-      // .then((response) => {}, (response => {}));
-      
-    },
-      onFileChange(e) {
-        let files = e.target.files || e.dataTransfer.files;
-        if (!files.length) {
-          return;
+      async createGalleryImage() {
+        const config = {
+          headers: { 
+                     "auth-token": localStorage.getItem('token')
+                   },
+        };
+        try {
+          const response = await axios.post('https://thesis-project-beta.herokuapp.com/api/v1/gallery', this.galleryImage, config)
+          if(response.status == 200){
+          this.$router.push("/dashboard/");  
+          }
+          
+        } catch (e) {
+          console.log(e);
         }
-        this.items.img = files[0];
-        this.createImage(files[0]);
-      },
-      createImage(file) {
+    },
+    async uploadImage(event) {
+      const URL = "https://thesis-project-beta.herokuapp.com/api/v1/upload";
+      const data = new FormData();
+      data.append("file", event.target.files[0]);
+      const config = {
+        headers: {
+         
+          'auth-token':localStorage.getItem('token')
+        },
+      };
+
+      const result  = await axios.post(URL, data, config);
+      this.galleryImage.imageUrl = result.data.images[0]
+      this.createImage(event.target.files[0]);
+    },
+       createImage(file) {
         let reader = new FileReader();
         let vm = this;
         reader.onload = e => {
           vm.preview = e.target.result;
         };
         reader.readAsDataURL(file);
-      },
-      // Get Request
-      // async submitProject() {
-        
-      // },
-      // refresh() {
-      //   window.location.reload(true)
-      // },
+      }
     },
   }
   </script>
