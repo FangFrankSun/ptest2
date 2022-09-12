@@ -56,7 +56,7 @@
                         <NuxtLink to="/MoreProjects">
                           <img
                             :src="project.imageUrl"
-                            alt="Todo List Mobile Appsdasd Redesign"
+                            alt="Todo List Mobile App Redesign"
                             sizes="(max-width: 479px) 93vw, (max-width: 767px) 90vw, 575px"
                             class="image portfolio-card"
                             />
@@ -66,7 +66,7 @@
                         class="split-content portfolio-card-bottom-content"
                         >
                         <h3 class="title home-portfolio-card">
-                          <NuxtLink to="/MoreProjects">Project Name:{{project.name}}</NuxtLink>
+                          <NuxtLink to="/MoreProjects">{{project.name}}</NuxtLink>
                         </h3>
                         <p class="paragraph home-portfolio-card">
                         </p>
