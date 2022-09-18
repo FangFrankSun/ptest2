@@ -1,4 +1,3 @@
-
 export const AUTH_MUTATIONS = {
   SET_USER: 'SET_USER',
   SET_PAYLOAD: 'SET_PAYLOAD',

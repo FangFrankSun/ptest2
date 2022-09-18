@@ -46,22 +46,6 @@
 </template>
 <script>
   import axios from 'axios';
-  // const form = document.getElementById('form');
-
-  // form.addEventListener('submit', async function(e) {
-  //   e.preventDefault();
-
-  //   const formData = new FormData(form);
-  //   console.log([...formData]);
-
-  //   try {
-  //     const res = await axios.post('https://thesis-project-beta.herokuapp.com/api/v1/project', formData)
-  //     console.log(res);
-  //   } catch(e) {
-  //     console.log(error);
-  //   }
-  // })
-  
   export default {
     data () {
       return {
@@ -122,7 +106,6 @@
       
     },
   }
-
 </script>
 <style scoped>
   .row {

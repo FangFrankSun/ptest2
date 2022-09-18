@@ -17,7 +17,6 @@
         </div>
       </div>
       <div
-     
         data-w-id="69f75c50-8619-7ebb-912d-114e45cb4c1a"
         class="home-portfolio-slider-main-wrapper reveal"
         >
@@ -171,31 +170,31 @@
 </template>
 <script>
 import axios from 'axios'
-  import NuxtLogo from '~/components/NuxtLogo.vue'
-    export default {
-      data(){
-        return {
-          projects:[]
-        }
-      },
-      mounted() {
-          const recaptchaScript = document.createElement("script");
-          recaptchaScript.setAttribute("src", "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=61129bb2ecedf803564c68ec");
-          document.head.appendChild(recaptchaScript);
-          const deneme = document.createElement("script");
-          deneme.setAttribute("src", "https://assets.website-files.com/61129bb2ecedf803564c68ec/js/webflow.19742290c.js");
-          document.head.appendChild(deneme);
-      },
-      methods: {
-        
-      },
-       created (){
-      axios.get('https://thesis-project-beta.herokuapp.com/api/v1/project').then((res) =>{
-        this.projects = res.data.projects 
-        console.log(this.projects);
-      })
-     
+import NuxtLogo from '~/components/NuxtLogo.vue'
+  export default {
+    data(){
+      return {
+        projects:[]
+      }
     },
-      components: { NuxtLogo }
-  }
+    mounted() {
+        const recaptchaScript = document.createElement("script");
+        recaptchaScript.setAttribute("src", "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=61129bb2ecedf803564c68ec");
+        document.head.appendChild(recaptchaScript);
+        const deneme = document.createElement("script");
+        deneme.setAttribute("src", "https://assets.website-files.com/61129bb2ecedf803564c68ec/js/webflow.19742290c.js");
+        document.head.appendChild(deneme);
+    },
+    methods: {
+      
+    },
+      created (){
+    axios.get('https://thesis-project-beta.herokuapp.com/api/v1/project').then((res) =>{
+      this.projects = res.data.projects 
+      console.log(this.projects);
+    })
+    
+  },
+    components: { NuxtLogo }
+}
 </script>

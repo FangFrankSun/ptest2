@@ -62,8 +62,6 @@ import axios from 'axios'
      created (){
       axios.get('https://thesis-project-beta.herokuapp.com/api/v1/project').then((res) =>this.projects = res.data.projects )
     }
-    
-   
   }
 </script>
 <style>

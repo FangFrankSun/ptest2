@@ -52,9 +52,7 @@ import axios from 'axios'
     data() {
       return {
         exterior: [],
-  
         interior: [],
-  
         furniture: [],
       }
     },
@@ -79,8 +77,6 @@ import axios from 'axios'
       
       })
     },
-
-    
   }
 </script>
 <style  scoped>

@@ -1,15 +1,3 @@
-// var btn = document.getElementById("btn");
-// var nav = document.getElementById("nav");
-
-// btn.onclick = function() {
-  
-//     if (nav.style.display == 'none') {
-//       nav.style.display = 'block';
-//     } else {
-//       nav.style.display = 'none';
-//     }
-//   }
-
 // Navbar disappear on scroll
 
 var prevScrollpos = window.pageYOffset;
@@ -29,7 +17,7 @@ function reveal() {
   for (var i = 0; i < reveals.length; i++) {
     var windowHeight = window.innerHeight;
     var elementTop = reveals[i].getBoundingClientRect().top;
-    var elementVisible = 200;
+    var elementVisible = 150;
     if (elementTop < windowHeight - elementVisible) {
       reveals[i].classList.add("active");
     } else {

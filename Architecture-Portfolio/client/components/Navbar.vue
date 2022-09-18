@@ -9,8 +9,7 @@
     role="banner"
     class="header w-nav navbar-scroll-animation"
     style="opacity: 1"
-    id="navigation-bar"
-    >
+    id="navigation-bar">
     <div class="container-default w-container">
       <div class="header-wrapper">
         <div class="split-content header-right">
@@ -61,7 +60,6 @@
                     aria-haspopup="menu"
                     aria-expanded="false"
                     role="button"
-                    
                     tabindex="0"
                     >
                     <div>
@@ -73,15 +71,13 @@
             </ul>
             <a
               href="mailto:gulcatay.mimar@gmail.com"
-              class="email-header-wrapper show-mobile w-inline-block"
-              >
+              class="email-header-wrapper show-mobile w-inline-block">
               <img
                 src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112a4fa0865622bd03376a4_email-icon-personal-x-template.svg"
                 class="image email-header-icon"
                 />
               <div>gulcatay.mimar@gmail.com</div>
-            </a
-              >
+            </a>
           </nav>
           <div class="menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button" tabindex="0"  aria-controls="w-nav-overlay-0"  aria-haspopup="menu" aria-expanded="false">
             <div class="menu-button-icon-main-wrapper">
@@ -96,16 +92,13 @@
         <div class="split-content header-left">
           <a
             href="mailto:gulcatay.mimar@gmail.com"
-            class="email-header-wrapper w-inline-block"
-            >
+            class="email-header-wrapper w-inline-block">
             <img
               src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112a4fa0865622bd03376a4_email-icon-personal-x-template.svg"
-              alt="Email Icon - You X Webflow Template"
               class="image email-header-icon"
               />
-            <div>gulcatay.mimar@gmail.com</div>
-          </a
-            >
+            <div>gad.architecture@gmail.com</div>
+          </a>
         </div>
       </div>
     </div>

@@ -82,22 +82,22 @@ import axios from 'axios'
          }
          })
       },
-       async uploadImage(event) {
-      const URL = "https://thesis-project-beta.herokuapp.com/api/v1/upload";
-      const data = new FormData();
-      data.append("file", event.target.files[0]);
-      const config = {
-        headers: {
-         
-          'auth-token':localStorage.getItem('token')
-        },
-      };
+      async uploadImage(event) {
+        const URL = "https://thesis-project-beta.herokuapp.com/api/v1/upload";
+        const data = new FormData();
+        data.append("file", event.target.files[0]);
+        const config = {
+          headers: {
+          
+            'auth-token':localStorage.getItem('token')
+          },
+        };
 
-      const result  = await axios.post(URL, data, config);
-      this.project.imageUrl = result.data.images[0]
-      this.createImage(event.target.files[0]);
-    },
-       createImage(file) {
+        const result  = await axios.post(URL, data, config);
+        this.project.imageUrl = result.data.images[0]
+        this.createImage(event.target.files[0]);
+      },
+      createImage(file) {
         let reader = new FileReader();
         let vm = this;
         reader.onload = e => {
@@ -105,7 +105,6 @@ import axios from 'axios'
         };
         reader.readAsDataURL(file);
       },
-     
     }
   };
 </script>

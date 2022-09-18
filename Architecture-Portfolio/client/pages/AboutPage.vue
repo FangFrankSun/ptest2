@@ -353,7 +353,7 @@
         </div>
       </div>
     </div>
-    <h2 class="title my-skills center padding-top2">Seminars & Courses</h2>
+    <h2 class="title my-skills center padding-top2" style="margin-top: 3.125em;">Seminars & Courses</h2>
     <div class="container-default w-container padding-top">
       <div class="resume-main-wrapper">
         <div class="_2-column-grid resume-grid">

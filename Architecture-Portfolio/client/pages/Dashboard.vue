@@ -49,19 +49,15 @@
 
     created() {
       if (typeof window !== 'undefined') {
-    this.token = localStorage.getItem('token');
-}
+        this.token = localStorage.getItem('token');
+      }
      
-      if(this.token == null){
+      if (this.token == null){
         this.$router.push('/login')
       }
       let url = 'https://thesis-project-beta.herokuapp.com/api/v1/project'
       axios.get(url).then((res) =>this.projects = res.data.projects )
     },
-
-  
-  
-
     computed: {
     ...mapGetters(["isLoggedIn", 'isAuthenticated', 'loggedInUser'])
     },
@@ -82,8 +78,8 @@
       async logout() {
       localStorage.removeItem('token')
       location.reload()
-    },}
-
+      },
+    }
   }
 </script>
 <style scoped>
