@@ -48,7 +48,7 @@
           </p>
           <div class="_5-column-grid footer-social-links-grid">
             <!-- Facebook -->
-            <a href="https://www.facebook.com/"
+            <a href="https://www.facebook.com/gulcatay.can"
               id="w-node-dace37e7-9f7d-bd23-c0da-b4371de70cef-ae2f46c5"
               target="_blank"
               class="footer-social-link w-inline-block"
@@ -68,7 +68,7 @@
               class="image footer-social-link">
             </a>
             <!-- Instagram -->
-            <a href="https://instagram.com/"
+            <a href="https://www.instagram.com/gulcatay.mimar/"
               id="w-node-_76f69537-9545-3254-9e62-804702692aed-ae2f46c5"
               target="_blank"
               class="footer-social-link w-inline-block"
@@ -78,7 +78,7 @@
               class="image footer-social-link">
             </a>
             <!-- Linkedin -->
-            <a href="https://linkedin.com/"
+            <a href="https://www.linkedin.com/in/g%C3%BCl%C3%A7atay-can-%C3%B6zbayrak-2b173b6b/"
               id="w-node-_531c99c3-bf37-23d5-32d5-68134a34f4a4-ae2f46c5"
               target="_blank"
               class="footer-social-link w-inline-block"
@@ -88,7 +88,7 @@
               class="image footer-social-link">
             </a>
             <!-- Whatsapp -->
-            <a href="https://whatsapp.com/"
+            <a href="tel:(415)200-8613"
               id="w-node-cbb89fca-0d6e-42c5-c84a-e55d6cf59c93-ae2f46c5"
               target="_blank"
               class="footer-social-link w-inline-block"
@@ -111,7 +111,7 @@
                   <a href="/" aria-current="page" class="footer-link w--current">Home</a>
                 </li>
                 <li class="footer-nav-item opacity">
-                  <a href="/about" class="footer-link">About</a>
+                  <a href="/aboutPage" class="footer-link">About</a>
                 </li>
                 <li class="footer-nav-item opacity">
                   <a href="/Gallery" class="footer-link">Gallery</a>
@@ -127,14 +127,13 @@
               <div class="footer-menu-content contact-links">
                 <ul role="list" class="footer-nav last w-list-unstyled">
                   <li class="footer-nav-item">
-                    <a href="mailto:gulcatay.mimar@gmail.com"
+                    <a href="mailto:gulcatay.arch@gmail.com"
                       class="contact-link-wrapper w-inline-block"
                       >
                       <img src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6113f8162fc0aa35386a8ca9_email-icon-700-personal-x-webflow-template-brix-templates.svg"
-                        alt="Email Icon - You X Webflow Template"
                         class="image contact-link-icon footer-icon"
                         >
-                      <div>gad.architecture<br>@gmail.com</div>
+                      <div>Gmail</div>
                     </a>
                   </li>
                   <li class="footer-nav-item">
@@ -142,7 +141,7 @@
                       class="contact-link-wrapper w-inline-block"
                       >
                       <img src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6113f866488b09519c802b88_phone-icon-personal-x-webflow-template-brix-templates.svg"
-                        alt="Phone Icon - You X Webflow Template"
+                        
                         class="image contact-link-icon footer-icon"
                         >
                       <div>(+359) 89 4423084</div>

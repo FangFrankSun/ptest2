@@ -13,7 +13,7 @@
           flex-wrap: wrap;">
           <div v-for="image of images" :key="image"
             class="col-lg-3 col-md-4 col-sm-6 mb-4">
-            <div class="card recipe-card box-shadow">
+            <div class="card recipe-card box-shadow width">
               
               <img :src="image.imageUrl[0]" class="card-img-top"/>
               <div class="card-body">
@@ -104,6 +104,9 @@ import axios from 'axios'
   @media screen and (max-width: 480px) {
   .card {
   width: 85%;
+  }
+  .width {
+    width: 100%;
   }
   }
 </style>

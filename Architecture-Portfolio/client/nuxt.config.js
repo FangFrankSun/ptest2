@@ -14,7 +14,8 @@ export default {
         src: 'js/toggle.js',
         body: true,
         mode: 'client',
-      },],
+      },
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

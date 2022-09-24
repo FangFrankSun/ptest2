@@ -1,11 +1,11 @@
 <template>
   <!-- <div class="container mt-5" v-if="isAuthenticated"> -->
   <div class="container mt-5">
-    <button class="button-color-delete w-button"  @click="logout">Logout</button>
     <div class="row" > 
-      <div class="col-12 text-right mb-4">
-        <div class="justify-content-between">
-          <NuxtLink to="/AddProjectPage"><a class="button-primary w-button">Add Project</a></NuxtLink>
+      <div class="col-12 mb-4">
+        <div class="buttons">
+          <div><button class="button-color-delete w-button button-logout" @click="logout">Logout</button></div>
+          <div><NuxtLink to="/AddProjectPage"><a class="button-primary w-button">Add Project</a></NuxtLink></div>
         </div>
       </div>
       <div v-if="!projects.length">Nothing is loading, try again.</div>
@@ -112,6 +112,40 @@
  .width28{ 
   width: 28%;
  }
+ .buttons {
+  display: flex;
+  justify-content: space-between;
+ }
+ .buttons:nth-child(1) {
+  text-align: right;
+ }
+ .button-logout {
+  padding: 24px 50px;
+  border-style: none;
+  border-radius: 80px;
+  -webkit-transition: color 300ms ease, box-shadow 300ms ease,
+  background-color 300ms ease, -webkit-transform 300ms ease;
+  transition: color 300ms ease, box-shadow 300ms ease,
+  background-color 300ms ease, -webkit-transform 300ms ease;
+  transition: color 300ms ease, transform 300ms ease, box-shadow 300ms ease,
+  background-color 300ms ease;
+  transition: color 300ms ease, transform 300ms ease, box-shadow 300ms ease,
+  background-color 300ms ease, -webkit-transform 300ms ease;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  }
+  .button-logout:hover {
+  background-color: #CE9E95;
+  box-shadow: 0 4px 20px -5px rgba(20, 20, 43, 0.15);
+  -webkit-transform: translate3d(0px, -6px, 0.01px);
+  transform: translate3d(0px, -6px, 0.01px);
+  color: #fff;
+  text-decoration: none;
+  }
   @media screen and (max-width: 768px) {
   .card {
   width: 100%;
@@ -123,6 +157,9 @@
   @media screen and (max-width: 480px) {
   .card {
   width: 85%;
+  }
+  .button-logout {
+  padding: 16px 30px 16px 30px;
   }
   }
 </style>

@@ -3,7 +3,7 @@
     <div class="container-default w-container">
       <div class="top-content portfolio-top-content">
         <div class="split-content portfolio-left content-overlay">
-          <h2 class="title portfolio">Take a look at my projects</h2>
+          <h2 class="title portfolio font-size">Take a look at my projects</h2>
           <img src="https://assets.website-files.com/61129bb2ecedf803564c68ec/6112bdfb2b341387dfa368b4_portfolio-underline-personal-x-template.svg"
                class="image portfolio-underline"/>
         </div>
@@ -68,6 +68,7 @@ import axios from 'axios'
   /* .top-content.portfolio-top-content {
      margin-bottom: 0px!important; 
 } */
+  
   .main-title{
   color: #2d2d2d;
   text-align: center;
@@ -238,6 +239,9 @@ line-height: 1;
     .wg-box-content-details p {
       font-size: 0.6em;
     }
+    .font-size {
+    font-size: 1.4em !important;
+  }
   }
 
   @media screen and (max-width: 768px){

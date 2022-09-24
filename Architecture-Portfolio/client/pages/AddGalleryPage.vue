@@ -155,4 +155,9 @@ import axios from 'axios'
   background-color: var(--darkGreen);
   box-shadow: inset 0 0 0 5px #ffffff;
   }
+  @media screen and (max-width: 479px) {
+    .col-md-6.mb-4 {
+      max-width: 60%;
+    }
+  }
 </style>

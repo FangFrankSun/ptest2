@@ -10,7 +10,6 @@
             <img
               src="~/assets/image/pink-hat.jpeg"
               sizes="(max-width: 479px) 93vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, (max-width: 1439px) 47vw, 589.4765625px"
-              alt="About Product Designer - You X Webflow Template"
               class="image home-about image-smaller"
               />
           </div>
@@ -33,6 +32,7 @@
     <div
       data-w-id="e0fb2ffc-b1a3-478c-0a65-4f26db701dd7"
       class="top-content resume-top-content see-full-resume reveal"
+      style=" margin-right:auto;"
       >
       <h2 class="title resume-section">Take a look at my resume</h2>
       <img
@@ -40,11 +40,12 @@
         alt=""
         class="image resume-underline"
         />
-        <a class="button-primary w-button" href="Gulcatay-resume.pdf" title="" download="Gulcatay-resume.pdf"> See full resume </a>
+        <a class="button-primary w-button" href="assets/File/GulcatayResume.pdf" download>See full resume</a>
       
       
     </div>
   </div>
 </template>
-<script></script>
-<!-- container default ustteki class icine -->
+<script>
+
+</script>

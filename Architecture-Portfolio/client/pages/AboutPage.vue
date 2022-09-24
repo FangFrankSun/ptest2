@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="section about-hero wf-section">
       <div class="container-default w-container">
-        <div class="hero-about-wrapper padding-top">
+        <div class="hero-about-wrapper padding-top reveal-hero">
           <img src="~/assets/image/aboutme1.jpeg"
             alt=""
             sizes="(max-width: 479px) 93vw, (max-width: 767px) 94vw, (max-width: 991px) 95vw, (max-width: 1439px) 43vw, 552px"

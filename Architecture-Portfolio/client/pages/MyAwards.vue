@@ -3,12 +3,7 @@
     <div class="container-default w-container">
       <div
         data-w-id="80fc6ce2-ba8b-0e61-7127-03c73b793436"
-        style="
-        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1)
-        rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
-        opacity: 1;
-        transform-style: preserve-3d;
-        "
+       
         class="container-small text-center"
         >
         <h2>My Awards</h2>
@@ -20,11 +15,16 @@
         <div class="_2-column-grid services-grid">
           <div
             data-w-id="f26e9ff2-30d1-efc9-7625-a9b1bf2a5c06"
-            class="card service-card reveal demo"
+            class="card service-card reveal"
+            style="
+        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1)
+        rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+        opacity: 1;
+        transform-style: preserve-3d;
+        "
             >
             <img
               src="~/assets/image/trophy-fill.png"
-              alt="Web Design - You X Webflow Template"
               class="image service-icon"
               >
             <div>
@@ -36,11 +36,16 @@
           </div>
           <div
             data-w-id="0b584023-c6e7-c8f5-aae2-54d5d8072e5a"
-            class="card service-card reveal"
+            class="card service-card reveal card2"
+            style="
+        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1)
+        rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+        opacity: 1;
+        transform-style: preserve-3d;
+        "
             >
             <img
               src="~/assets/image/trophy-fill.png"
-              alt="UI/UX Design - You X Webflow Template"
               class="image service-icon"
               >
             <div>
@@ -53,10 +58,15 @@
           <div
             data-w-id="679e070c-ebf8-e913-cb5b-a9c521d0a708"
             class="card service-card reveal"
+            style="
+        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1)
+        rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+        opacity: 1;
+        transform-style: preserve-3d;
+        "
             >
             <img
               src="~/assets/image/trophy-line.png"
-              alt="Product Design - You X Webflow Template"
               class="image service-icon"
               >
             <div>
@@ -68,11 +78,16 @@
           </div>
           <div
             data-w-id="371c426b-9338-e482-b26d-bf27e4abebe6"
-            class="card service-card reveal"
+            class="card service-card reveal card2"
+            style="
+        transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1)
+        rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg);
+        opacity: 1;
+        transform-style: preserve-3d;
+        "
             >
             <img
               src="~/assets/image/trophy-line.png"
-              alt="Web Development - You X Webflow Template"
               class="image service-icon"
               >
             <div>
@@ -93,3 +108,21 @@
     </div>
   </div>
 </template>
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+      transform: translate3d(-5%, 0, 0);
+    }
+
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: translate3d(0,0,0)
+    }
+  }
+  .card2 {
+    animation-delay: 1000ms;
+  }
+</style>

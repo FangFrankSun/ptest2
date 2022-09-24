@@ -129,4 +129,10 @@
   input[title~=reference] {
 
   }
+  @media screen and (max-width: 479px) {
+    .col-md-6.mb-4 {
+      max-width: 60%;
+    }
+  }
+
 </style>
