@@ -1,2 +1,2 @@
-# Architect Portfolio
+# Architecture Portfolio
  
